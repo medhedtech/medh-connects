@@ -77,21 +77,19 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 text-primary-green mr-3 mt-0.5" />
                 <span className="text-gray-300">
-                  123 Community Lane,<br />
-                  New Delhi, 110001,<br />
-                  India
+                  New Delhi and Mumbai
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-primary-green mr-3" />
-                <a href="tel:+911234567890" className="text-gray-300 hover:text-white transition-colors">
-                  +91 123 456 7890
+                <a href="tel:+917400115233" className="text-gray-300 hover:text-white transition-colors">
+                  +91 7400 1152 33
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 text-primary-green mr-3" />
-                <a href="mailto:info@medhfoundation.org" className="text-gray-300 hover:text-white transition-colors">
-                  info@medhfoundation.org
+                <a href="mailto:care@medhfoundation.org" className="text-gray-300 hover:text-white transition-colors">
+                  care@medhfoundation.org
                 </a>
               </li>
             </ul>
