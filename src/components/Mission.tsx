@@ -37,7 +37,7 @@ const Mission = () => {
               <h3 className="text-3xl font-bold text-white">Our Vision</h3>
             </div>
             <div className="p-8">
-              <p className="text-gray-700 mb-6 text-lg text-center">We aspire to create a world where every child accesses quality education and every single mother acquires empowering skills, regardless of economic background. By unlocking the potential of both generations, we aim to catalyze positive societal change and build resilient, self-sufficient families.</p>
+              <p className="text-gray-700 mb-6 text-lg text-justify">We aspire to create a world where every child accesses quality education and every single mother acquires empowering skills, regardless of economic background. By unlocking the potential of both generations, we aim to catalyze positive societal change and build resilient, self-sufficient families.</p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col items-center text-center p-4 rounded-lg bg-gray-50">
                   <Users className="w-8 h-8 text-secondary-orange mb-2" />
