@@ -24,7 +24,7 @@ const Resources = () => {
     {
       id: 1,
       title: "The Importance of Quality Education for All",
-      date: "May 18, 2025",
+      date: "March 18, 2025",
       author: "Dr. Priya Sharma",
       excerpt: "Exploring how equitable education can transform societies and create lasting positive change for underprivileged communities.",
       image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
@@ -33,7 +33,7 @@ const Resources = () => {
     {
       id: 2,
       title: "Economic Independence: Empowering Single Mothers",
-      date: "April 12, 2025",
+      date: "February 12, 2025",
       author: "Amit Patel",
       excerpt: "How skill development and financial literacy programs can create sustainable livelihoods for single-parent households.",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
@@ -42,7 +42,7 @@ const Resources = () => {
     {
       id: 3,
       title: "Building Stronger Communities Through Collective Action",
-      date: "March 30, 2025",
+      date: "January 30, 2025",
       author: "Neha Gupta",
       excerpt: "Why community-led initiatives are essential for sustainable development and lasting social change.",
       image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
@@ -51,7 +51,7 @@ const Resources = () => {
     {
       id: 4,
       title: "Bridging the Digital Divide in Urban and Rural India",
-      date: "February 25, 2025",
+      date: "January 25, 2025",
       author: "Rajesh Kumar",
       excerpt: "Addressing challenges and opportunities in making digital education accessible to all segments of society.",
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",

@@ -34,14 +34,14 @@ const News = () => {
     {
       id: 1,
       title: "Medh Foundation Established to Support Education and Empowerment",
-      date: "March 15, 2025",
+      date: "January 15, 2025",
       excerpt: "Announcing the formation of Medh Foundation with a mission to transform lives through education and skill development.",
       image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     },
     {
       id: 2,
       title: "Strategic Partnerships Formed for Community Development",
-      date: "April 22, 2025",
+      date: "March 22, 2025",
       excerpt: "Medh Foundation forms key strategic partnerships with educational institutions and corporate supporters to enhance our impact.",
       image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     },
