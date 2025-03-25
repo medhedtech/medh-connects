@@ -1,6 +1,7 @@
 
 import Hero from "@/components/Hero";
 import Mission from "@/components/Mission";
+import AimsObjectives from "@/components/AimsObjectives";
 import Navbar from "@/components/Navbar";
 import News from "@/components/News";
 import Partners from "@/components/Partners";
@@ -20,6 +21,7 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <Mission />
+        <AimsObjectives />
         <Programs />
         <News />
         <Partners />
