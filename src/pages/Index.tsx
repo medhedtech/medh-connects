@@ -4,6 +4,7 @@ import Mission from "@/components/Mission";
 import AimsObjectives from "@/components/AimsObjectives";
 import Approach from "@/components/Approach";
 import GlobalEngagement from "@/components/GlobalEngagement";
+import FinancialAidCSR from "@/components/FinancialAidCSR";
 import Navbar from "@/components/Navbar";
 import News from "@/components/News";
 import Partners from "@/components/Partners";
@@ -26,6 +27,7 @@ const Index = () => {
         <AimsObjectives />
         <Approach />
         <GlobalEngagement />
+        <FinancialAidCSR />
         <Programs />
         <News />
         <Partners />
