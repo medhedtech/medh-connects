@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -8,7 +7,7 @@ import {
   Lightbulb, 
   Users, 
   GanttChart,
-  VrHeadset, 
+  Headset, 
   Heart, 
   Leaf, 
   Globe, 
@@ -50,7 +49,7 @@ const Approach = () => {
     {
       title: "Virtual Reality Career Exploration",
       description: "Utilize VR technology to allow children and single mothers to experience various professions, inspiring future career paths.",
-      icon: <VrHeadset className="w-10 h-10 text-accent-green" />,
+      icon: <Headset className="w-10 h-10 text-accent-green" />,
       image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
