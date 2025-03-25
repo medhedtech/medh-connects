@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Mission from "@/components/Mission";
 import AimsObjectives from "@/components/AimsObjectives";
 import Approach from "@/components/Approach";
+import GlobalEngagement from "@/components/GlobalEngagement";
 import Navbar from "@/components/Navbar";
 import News from "@/components/News";
 import Partners from "@/components/Partners";
@@ -24,6 +25,7 @@ const Index = () => {
         <Mission />
         <AimsObjectives />
         <Approach />
+        <GlobalEngagement />
         <Programs />
         <News />
         <Partners />
