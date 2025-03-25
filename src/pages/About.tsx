@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
@@ -63,13 +64,13 @@ const About = () => {
                 <span className="bg-primary-green/10 text-primary-green px-4 py-1 rounded-full text-sm font-medium">Our Story</span>
                 <h2 className="mt-4 text-3xl font-bold mb-6">The Medh Foundation Journey</h2>
                 <p className="text-gray-700 mb-4">
-                  The Medh Foundation was established in 2010 with a vision to transform the lives of underprivileged children and single mothers in India. What began as a small initiative in one community has now grown into a comprehensive support system spanning multiple regions.
+                  The Medh Foundation is being established with a visionary goal to transform the lives of underprivileged children and single mothers in India. What begins as a focused initiative in one community is set to grow into a comprehensive support system spanning multiple regions.
                 </p>
                 <p className="text-gray-700 mb-4">
-                  Our founders, inspired by their own experiences with educational inequality, set out to create an organization that addresses not just immediate needs but builds long-term solutions for sustainable development.
+                  Our founders, inspired by their own experiences with educational inequality, are setting out to create an organization that addresses not just immediate needs but builds long-term solutions for sustainable development.
                 </p>
                 <p className="text-gray-700">
-                  Over the years, we have expanded our programs to include quality education for children, skill development for single mothers, and community empowerment initiatives that foster self-sufficiency and dignity.
+                  As we launch our foundation, we are developing programs that will include quality education for children, skill development for single mothers, and community empowerment initiatives designed to foster self-sufficiency and dignity.
                 </p>
               </div>
               <div className="rounded-xl overflow-hidden shadow-xl">
