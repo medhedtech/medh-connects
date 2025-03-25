@@ -2,12 +2,56 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
+import { Linkedin } from "lucide-react";
 
 const About = () => {
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, []);
+
+  const leadershipTeam = [
+    {
+      name: "Niti Saxena",
+      position: "Director",
+      image: "https://via.placeholder.com/400x400?text=Niti+Saxena"
+    },
+    {
+      name: "Neeraj Narain",
+      position: "Founder & CEO",
+      image: "https://via.placeholder.com/400x400?text=Neeraj+Narain"
+    },
+    {
+      name: "Jatin Wadhwa",
+      position: "Dir. Of Global Ops.",
+      image: "https://via.placeholder.com/400x400?text=Jatin+Wadhwa"
+    },
+    {
+      name: "Robinson Emmanuel",
+      position: "CL & DO",
+      image: "https://via.placeholder.com/400x400?text=Robinson+Emmanuel"
+    }
+  ];
+
+  const advisoryBoard = [
+    {
+      name: "Anil Nayak",
+      position: "ESampark Tech Solutions",
+      image: "https://via.placeholder.com/400x400?text=Anil+Nayak"
+    },
+    {
+      name: "Upendra Upadhyay",
+      position: "ESampark EdTech Medh",
+      image: "https://via.placeholder.com/400x400?text=Upendra+Upadhyay"
+    },
+    {
+      name: "Vikram Srivastava",
+      position: "ESampark EdTech Medh",
+      image: "https://via.placeholder.com/400x400?text=Vikram+Srivastava"
+    }
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -59,30 +103,61 @@ const About = () => {
               </p>
             </div>
             
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {leadershipTeam.map((member, index) => (
+                <Card key={index} className="bg-white overflow-hidden hover:shadow-lg transition-all">
+                  <div className="p-6 flex flex-col items-center text-center">
+                    <Avatar className="h-32 w-32 mb-4">
+                      <AvatarImage src={member.image} alt={member.name} />
+                      <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                    </Avatar>
+                    <h3 className="text-xl font-bold mb-1">{member.name}</h3>
+                    <p className="text-primary-green font-medium mb-3">{member.position}</p>
+                    <div className="mt-2">
+                      <a href="#" className="inline-flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
+                        <Linkedin className="h-4 w-4 text-gray-600" />
+                      </a>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Expert Guidance</span>
+              <h2 className="mt-4 text-3xl font-bold">Advisory Board</h2>
+              <p className="mt-4 text-gray-700 max-w-3xl mx-auto">
+                Industry experts who provide strategic direction and support to advance our mission.
+              </p>
+            </div>
+            
             <div className="grid md:grid-cols-3 gap-8">
-              {[1, 2, 3].map((item) => (
-                <div key={item} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all">
-                  <div className="h-64 overflow-hidden">
-                    <img 
-                      src={`https://via.placeholder.com/400x400?text=Team+Member+${item}`}
-                      alt={`Team member ${item}`}
-                      className="w-full h-full object-cover object-center"
-                    />
+              {advisoryBoard.map((member, index) => (
+                <Card key={index} className="bg-white overflow-hidden hover:shadow-lg transition-all">
+                  <div className="p-6 flex flex-col items-center text-center">
+                    <Avatar className="h-32 w-32 mb-4">
+                      <AvatarImage src={member.image} alt={member.name} />
+                      <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                    </Avatar>
+                    <h3 className="text-xl font-bold mb-1">{member.name}</h3>
+                    <p className="text-gray-600 font-medium mb-3">{member.position}</p>
+                    <div className="mt-2">
+                      <a href="#" className="inline-flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
+                        <Linkedin className="h-4 w-4 text-gray-600" />
+                      </a>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold">Team Member Name</h3>
-                    <p className="text-primary-green font-medium mb-3">Position</p>
-                    <p className="text-gray-600">
-                      Brief description about the team member's background, expertise, and contribution to the foundation.
-                    </p>
-                  </div>
-                </div>
+                </Card>
               ))}
             </div>
           </div>
         </section>
         
-        <section id="partners" className="py-16 px-4 md:px-8">
+        <section id="partners" className="py-16 px-4 md:px-8 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Collaborators</span>
