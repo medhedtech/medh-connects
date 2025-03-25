@@ -10,6 +10,7 @@ import News from "@/components/News";
 import Partners from "@/components/Partners";
 import Programs from "@/components/Programs";
 import Footer from "@/components/Footer";
+import ApplicationButton from "@/components/ApplicationButton";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -23,6 +24,9 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 flex justify-center">
+          <ApplicationButton size="lg" />
+        </div>
         <Mission />
         <AimsObjectives />
         <Approach />

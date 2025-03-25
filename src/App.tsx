@@ -11,6 +11,7 @@ import GetInvolved from "./pages/GetInvolved";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { FinancialSupportForm } from "./components/FinancialSupportForm";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <FinancialSupportForm />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
