@@ -38,7 +38,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center">
           <img 
-            src="/lovable-uploads/3a6c0455-6485-4c5b-8979-288640557b66.png" 
+            src="/lovable-uploads/6d21747e-b50c-4ef4-b1a8-3207bbe5740d.png" 
             alt="Medh Foundation Logo" 
             className="h-10 md:h-12"
           />
@@ -102,4 +102,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
