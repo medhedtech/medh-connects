@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
@@ -115,6 +114,7 @@ const About = () => {
           </div>
         </section>
         
+        {/* Partners section temporarily hidden
         <section id="partners" className="py-16 px-4 md:px-8 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
@@ -145,6 +145,7 @@ const About = () => {
             </div>
           </div>
         </section>
+        */}
       </main>
       <Footer />
     </div>

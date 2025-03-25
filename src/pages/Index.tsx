@@ -8,7 +8,6 @@ import FinancialAidCSR from "@/components/FinancialAidCSR";
 import Navbar from "@/components/Navbar";
 import News from "@/components/News";
 import Partners from "@/components/Partners";
-import Programs from "@/components/Programs";
 import Footer from "@/components/Footer";
 import ApplicationButton from "@/components/ApplicationButton";
 import { useEffect } from "react";
@@ -34,7 +33,7 @@ const Index = () => {
         <FinancialAidCSR />
         <Programs />
         <News />
-        <Partners />
+        {/* Partners section temporarily hidden */}
       </main>
       <Footer />
     </div>
