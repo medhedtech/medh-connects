@@ -4,12 +4,11 @@ import {
   BookOpen,
   BrainCircuit,
   Building,
-  Combination,
   FolderSync,
   GraduationCap,
   HandHeart,
   Lightbulb,
-  SchoolIcon,
+  School,
   Target,
   Users
 } from "lucide-react";
@@ -45,12 +44,12 @@ const AimsObjectives = () => {
     {
       title: "Community Outreach Strategies",
       description: "Implement targeted outreach programs, leveraging community leaders, social media, and local events to ensure our initiatives reach the intended audience.",
-      icon: <Combination className="w-10 h-10 text-accent-green" />
+      icon: <FolderSync className="w-10 h-10 text-accent-green" />
     },
     {
       title: "Learning Ecosystem Enhancement",
       description: "Elevate educational infrastructure for both children and mothers, focusing on versatile learning spaces that accommodate various programs.",
-      icon: <SchoolIcon className="w-10 h-10 text-primary-green" />
+      icon: <School className="w-10 h-10 text-primary-green" />
     },
     {
       title: "Educator and Mentor Empowerment",
