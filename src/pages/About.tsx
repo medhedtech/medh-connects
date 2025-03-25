@@ -16,7 +16,8 @@ const About = () => {
   const leadershipTeam = [
     {
       name: "Anil Nayak",
-      image: "https://via.placeholder.com/400x400?text=Anil+Nayak"
+      image: "/lovable-uploads/1994e886-9ac1-4d3b-b674-24257faab00f.png",
+      linkedIn: "https://www.linkedin.com/in/anilnayak2006/"
     },
     {
       name: "Jatin Wadhwa",
@@ -104,9 +105,21 @@ const About = () => {
                     </Avatar>
                     <h3 className="text-xl font-bold mb-3">{member.name}</h3>
                     <div className="mt-2">
-                      <a href="#" className="inline-flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
-                        <Linkedin className="h-4 w-4 text-gray-600" />
-                      </a>
+                      {member.linkedIn ? (
+                        <a 
+                          href={member.linkedIn}
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors"
+                          aria-label={`${member.name}'s LinkedIn profile`}
+                        >
+                          <Linkedin className="h-4 w-4 text-gray-600" />
+                        </a>
+                      ) : (
+                        <div className="inline-flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full cursor-not-allowed">
+                          <Linkedin className="h-4 w-4 text-gray-400" />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Card>
