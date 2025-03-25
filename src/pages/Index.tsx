@@ -34,7 +34,7 @@ const Index = () => {
         <FinancialAidCSR />
         <Programs />
         <News />
-        {/* Partners section temporarily hidden */}
+        <Partners />
       </main>
       <Footer />
     </div>
