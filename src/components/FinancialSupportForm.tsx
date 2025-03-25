@@ -56,7 +56,12 @@ import {
 } from "lucide-react";
 
 // Types of financial support
-const supportTypes = [
+interface SupportType {
+  id: string;
+  label: string;
+}
+
+const supportTypes: SupportType[] = [
   { id: "tuition", label: "Tuition Assistance" },
   { id: "books", label: "Books and Supplies" },
   { id: "transportation", label: "Transportation" },
@@ -133,8 +138,10 @@ const formSchema = z.object({
   futureGoals: z.string().min(50, { message: "Please provide at least 50 characters" }),
   
   // Documents - We'll handle file uploads separately
-  agreeToTerms: z.literal(true, {
-    errorMap: () => ({ message: "You must agree to the terms" }),
+  agreeToTerms: z.boolean({
+    required_error: "You must agree to the terms",
+  }).refine(val => val === true, {
+    message: "You must agree to the terms",
   }),
 });
 
@@ -202,7 +209,7 @@ export function FinancialSupportForm() {
   
   const isSingleMother = form.watch("isSingleMother");
   const residenceStatus = form.watch("residenceStatus");
-  const supportTypes = form.watch("supportTypes");
+  const selectedSupportTypes = form.watch("supportTypes");
   
   // Generate form content based on current step
   const renderStepContent = () => {
@@ -824,7 +831,7 @@ export function FinancialSupportForm() {
                 )}
               />
               
-              {supportTypes.includes("other") && (
+              {selectedSupportTypes.includes("other") && (
                 <FormField
                   control={form.control}
                   name="otherSupportDescription"
@@ -1170,9 +1177,9 @@ export function FinancialSupportForm() {
                     <div>
                       <dt className="text-sm text-muted-foreground">Support Types:</dt>
                       <dd>
-                        {form.getValues("supportTypes")?.map((type) => {
-                          const supportType = supportTypes.find(t => t.id === type);
-                          return supportType ? supportType.label : type;
+                        {form.getValues("supportTypes")?.map((typeId) => {
+                          const supportType = supportTypes.find(t => t.id === typeId);
+                          return supportType ? supportType.label : typeId;
                         }).join(", ") || "-"}
                       </dd>
                     </div>
