@@ -21,27 +21,27 @@ const About = () => {
     },
     {
       name: "Jatin Wadhwa",
-      image: "https://via.placeholder.com/400x400?text=Jatin+Wadhwa"
+      image: "/lovable-uploads/adafedbe-531e-4b59-abd9-9dfe8fdb2c0b.png"
     },
     {
       name: "Neeraj Narain",
-      image: "https://via.placeholder.com/400x400?text=Neeraj+Narain"
+      image: "/lovable-uploads/a89d24e6-6243-4bda-a8c3-0160f6a7c639.png"
     },
     {
       name: "Niti Saxena",
-      image: "https://via.placeholder.com/400x400?text=Niti+Saxena"
+      image: "/lovable-uploads/e5743892-ccde-4349-a4d5-6bef77007eb1.png"
     },
     {
       name: "Robinson Emmanuel",
-      image: "https://via.placeholder.com/400x400?text=Robinson+Emmanuel"
+      image: "/lovable-uploads/40f164b0-a792-4362-ba5a-5a680af661bc.png"
     },
     {
       name: "Upendra Upadhyay",
-      image: "https://via.placeholder.com/400x400?text=Upendra+Upadhyay"
+      image: "/lovable-uploads/de9ae4e0-c53e-4833-b3f1-801224a56329.png"
     },
     {
       name: "Vikram Srivastava",
-      image: "https://via.placeholder.com/400x400?text=Vikram+Srivastava"
+      image: "/lovable-uploads/081ac9a9-9947-4907-b019-fd919f097b66.png"
     }
   ];
 
