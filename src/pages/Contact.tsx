@@ -1,8 +1,11 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Mail, MapPin, Phone, Users, Calendar, FileText } from "lucide-react";
+import { Mail, MapPin, Phone, Users, Calendar, FileText, CreditCard } from "lucide-react";
 import { useState, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import ApplicationButton from "@/components/ApplicationButton";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -246,6 +249,119 @@ const Contact = () => {
               </div>
             </div>
             
+            {/* FAQs Section */}
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold mb-8">Frequently Asked Questions</h2>
+              <div className="bg-white rounded-xl shadow-md p-6">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>What is the Medh Foundation?</AccordionTrigger>
+                    <AccordionContent>
+                      The Medh Foundation is a non-profit organization dedicated to empowering children and single mothers through education and skill development, with the aim of creating self-sufficient communities across India.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger>How can I apply for financial support?</AccordionTrigger>
+                    <AccordionContent>
+                      You can apply for financial support by clicking on the "Online Application for Financial Support" button available on our website. The application process involves filling out a form with details about the child, educational information, family situation, and the type of support needed.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-3">
+                    <AccordionTrigger>What types of financial support does the foundation offer?</AccordionTrigger>
+                    <AccordionContent>
+                      The foundation offers several types of financial support including tuition assistance, books and supplies funding, and transportation assistance. Each type of support is designed to address specific educational needs and remove barriers to education.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-4">
+                    <AccordionTrigger>Who is eligible for the foundation's programs?</AccordionTrigger>
+                    <AccordionContent>
+                      Our programs primarily focus on supporting children from underprivileged backgrounds and single mothers. Eligibility criteria may vary by program, but generally, we support those who demonstrate financial need and a commitment to education or skill development.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-5">
+                    <AccordionTrigger>How can I volunteer with the Medh Foundation?</AccordionTrigger>
+                    <AccordionContent>
+                      You can volunteer with us by visiting the "Get Involved" section of our website and filling out the volunteer application form. We welcome volunteers with various skills and interests, including teaching, mentoring, administrative support, event planning, and more.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-6">
+                    <AccordionTrigger>How are donations to the foundation used?</AccordionTrigger>
+                    <AccordionContent>
+                      Donations to the Medh Foundation are primarily used to fund our educational programs, skill development initiatives, and financial support for children and single mothers. A small percentage covers administrative costs to ensure the sustainable operation of our programs.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-7">
+                    <AccordionTrigger>Can I specify how my donation is used?</AccordionTrigger>
+                    <AccordionContent>
+                      Yes, donors can specify which program or initiative they would like their donation to support. You can indicate your preference during the donation process, or contact us directly to discuss specific allocation of your contribution.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-8">
+                    <AccordionTrigger>Are donations to the Medh Foundation tax-deductible?</AccordionTrigger>
+                    <AccordionContent>
+                      Yes, donations to the Medh Foundation are tax-deductible as allowed by law. We provide donation receipts that can be used for tax purposes. For specific tax-related questions, we recommend consulting with your tax advisor.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-9">
+                    <AccordionTrigger>How can my organization partner with the Medh Foundation?</AccordionTrigger>
+                    <AccordionContent>
+                      We welcome partnerships with organizations that share our mission and values. Potential partnerships can include corporate social responsibility initiatives, joint programs, sponsorships, or in-kind donations. Please contact us at care@medhfoundation.org to discuss partnership opportunities.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-10">
+                    <AccordionTrigger>What documents are required for the financial support application?</AccordionTrigger>
+                    <AccordionContent>
+                      Required documents include the child's identification (Aadhar Card, birth certificate), school ID, recent fee receipts, academic records, parent identification documents, proof of residence, and income verification. Single mothers should provide relevant documentation regarding their marital status.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-11">
+                    <AccordionTrigger>How long does the application process take?</AccordionTrigger>
+                    <AccordionContent>
+                      The application review process typically takes 4-6 weeks from submission. This includes verification of documents, assessment of need, and determination of the appropriate support. Applicants will be notified of the decision via email or phone.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-12">
+                    <AccordionTrigger>Does the foundation provide support for higher education?</AccordionTrigger>
+                    <AccordionContent>
+                      Yes, the Medh Foundation provides support for various levels of education, from primary school through undergraduate studies. The specific support available depends on the student's needs, academic performance, and our available resources.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-13">
+                    <AccordionTrigger>How often does the foundation disburse financial support?</AccordionTrigger>
+                    <AccordionContent>
+                      Financial support is typically disbursed at the beginning of each academic term or as needed for specific expenses. The disbursement schedule is tailored to align with educational institution requirements and the specific needs of recipients.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-14">
+                    <AccordionTrigger>Is financial support available for students outside of India?</AccordionTrigger>
+                    <AccordionContent>
+                      Currently, our financial support programs are focused on students within India. However, we are continuously evaluating opportunities to expand our reach. Please contact us for the most current information regarding eligibility regions.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="item-15">
+                    <AccordionTrigger>How can I stay updated about the foundation's activities?</AccordionTrigger>
+                    <AccordionContent>
+                      You can stay updated by subscribing to our newsletter at the bottom of our website, following us on social media platforms, or regularly visiting our website's News section. We share updates about our programs, success stories, and upcoming events.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            </div>
+            
             {/* Quick Links */}
             <div className="mt-16">
               <h2 className="text-2xl font-bold mb-8">Quick Links</h2>
@@ -274,14 +390,18 @@ const Contact = () => {
                   <h3 className="font-bold">Events</h3>
                   <p className="text-sm text-gray-600 mt-1">Upcoming activities</p>
                 </a>
-                <a 
-                  href="/resources#faq" 
+                <div 
                   className="flex flex-col items-center bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-all text-center"
                 >
-                  <FileText className="w-8 h-8 text-primary-green mb-3" />
-                  <h3 className="font-bold">FAQs</h3>
-                  <p className="text-sm text-gray-600 mt-1">Common questions</p>
-                </a>
+                  <CreditCard className="w-8 h-8 text-primary-green mb-3" />
+                  <h3 className="font-bold">Financial Support</h3>
+                  <p className="text-sm text-gray-600 mt-1">Apply for assistance</p>
+                  <ApplicationButton 
+                    variant="link" 
+                    size="sm" 
+                    className="mt-2 text-primary-green"
+                  />
+                </div>
               </div>
             </div>
           </div>
