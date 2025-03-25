@@ -1,4 +1,3 @@
-
 import { Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -10,7 +9,7 @@ const News = () => {
       date: "July 15, 2025",
       location: "Delhi Community Center",
       description: "Join our educational outreach program aimed at providing resources and mentorship to underprivileged children.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      image: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     },
     {
       id: 2,
@@ -18,7 +17,7 @@ const News = () => {
       date: "August 20, 2025",
       location: "Medh Training Center, Mumbai",
       description: "A comprehensive workshop focusing on digital literacy and entrepreneurship skills for single mothers.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      image: "https://images.unsplash.com/photo-1596305589430-5b26f0b7a86d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     },
     {
       id: 3,
@@ -26,7 +25,7 @@ const News = () => {
       date: "September 10, 2025",
       location: "The Grand Hotel, Delhi",
       description: "The official launch celebration of Medh Foundation, bringing together supporters and community partners.",
-      image: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     },
   ];
 
@@ -36,14 +35,14 @@ const News = () => {
       title: "Medh Foundation Established to Support Education and Empowerment",
       date: "January 15, 2025",
       excerpt: "Announcing the formation of Medh Foundation with a mission to transform lives through education and skill development.",
-      image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      image: "https://images.unsplash.com/photo-1627570437251-af4df68081f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     },
     {
       id: 2,
       title: "Strategic Partnerships Formed for Community Development",
       date: "March 22, 2025",
       excerpt: "Medh Foundation forms key strategic partnerships with educational institutions and corporate supporters to enhance our impact.",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      image: "https://images.unsplash.com/photo-1596401057633-54a8fe8ef647?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     },
   ];
 

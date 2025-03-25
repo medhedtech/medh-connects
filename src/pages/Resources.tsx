@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Calendar, FileText } from "lucide-react";
@@ -27,7 +26,7 @@ const Resources = () => {
       date: "March 18, 2025",
       author: "Dr. Priya Sharma",
       excerpt: "Exploring how equitable education can transform societies and create lasting positive change for underprivileged communities.",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       category: "Education"
     },
     {
@@ -36,7 +35,7 @@ const Resources = () => {
       date: "February 12, 2025",
       author: "Amit Patel",
       excerpt: "How skill development and financial literacy programs can create sustainable livelihoods for single-parent households.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1617360547704-3da8b5ef207d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       category: "Skill Development"
     },
     {
@@ -45,7 +44,7 @@ const Resources = () => {
       date: "January 30, 2025",
       author: "Neha Gupta",
       excerpt: "Why community-led initiatives are essential for sustainable development and lasting social change.",
-      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1596401057633-54a8fe8ef647?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       category: "Community"
     },
     {
@@ -54,7 +53,7 @@ const Resources = () => {
       date: "January 25, 2025",
       author: "Rajesh Kumar",
       excerpt: "Addressing challenges and opportunities in making digital education accessible to all segments of society.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1613294326794-e7c71a208b46?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       category: "Education"
     },
   ];
@@ -67,7 +66,7 @@ const Resources = () => {
       time: "10:00 AM - 4:00 PM",
       location: "Delhi Community Center",
       description: "Join our educational outreach program aimed at providing resources and mentorship to underprivileged children.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     },
     {
       id: 2,
@@ -76,7 +75,7 @@ const Resources = () => {
       time: "9:00 AM - 5:00 PM",
       location: "Medh Training Center, Mumbai",
       description: "A comprehensive workshop focusing on digital literacy and entrepreneurship skills for single mothers.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1596305589430-5b26f0b7a86d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     },
     {
       id: 3,
@@ -85,7 +84,7 @@ const Resources = () => {
       time: "7:00 PM - 10:00 PM",
       location: "The Grand Hotel, Delhi",
       description: "The official launch celebration of Medh Foundation, bringing together supporters and community partners.",
-      image: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     },
   ];
 
