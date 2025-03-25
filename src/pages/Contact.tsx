@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone, Users, Calendar, FileText } from "lucide-react";
@@ -75,9 +74,7 @@ const Contact = () => {
                       <div>
                         <h3 className="font-bold mb-1">Our Location</h3>
                         <p className="text-gray-600">
-                          123 Community Lane,<br />
-                          New Delhi, 110001,<br />
-                          India
+                          New Delhi and Mumbai
                         </p>
                       </div>
                     </li>
@@ -88,8 +85,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-bold mb-1">Phone Number</h3>
                         <p className="text-gray-600">
-                          <a href="tel:+911234567890" className="hover:text-primary-green transition-colors">
-                            +91 123 456 7890
+                          <a href="tel:+917400115233" className="hover:text-primary-green transition-colors">
+                            +91 7400 1152 33
                           </a>
                         </p>
                       </div>
@@ -101,8 +98,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-bold mb-1">Email Address</h3>
                         <p className="text-gray-600">
-                          <a href="mailto:info@medhfoundation.org" className="hover:text-primary-green transition-colors">
-                            info@medhfoundation.org
+                          <a href="mailto:care@medhfoundation.org" className="hover:text-primary-green transition-colors">
+                            care@medhfoundation.org
                           </a>
                         </p>
                       </div>
@@ -246,23 +243,6 @@ const Contact = () => {
                     </button>
                   </form>
                 </div>
-              </div>
-            </div>
-            
-            {/* Map Section */}
-            <div className="mt-16">
-              <h2 className="text-2xl font-bold mb-6">Visit Us</h2>
-              <div className="bg-white rounded-xl shadow-md overflow-hidden h-96">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224346.5400422223!2d77.04417927040568!3d28.5271670513483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1689322232009!5m2!1sen!2sin" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Medh Foundation Location"
-                ></iframe>
               </div>
             </div>
             
