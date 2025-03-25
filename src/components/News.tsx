@@ -1,0 +1,152 @@
+
+import { Calendar } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const News = () => {
+  const events = [
+    {
+      id: 1,
+      title: "Back to School Supply Drive",
+      date: "August 20, 2023",
+      location: "Delhi Community Center",
+      description: "Help us collect school supplies for underprivileged children before the new school year begins.",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    },
+    {
+      id: 2,
+      title: "Skill Development Workshop",
+      date: "September 15, 2023",
+      location: "Medh Training Center, Mumbai",
+      description: "A two-day workshop focusing on digital literacy and basic computer skills for single mothers.",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    },
+    {
+      id: 3,
+      title: "Annual Fundraising Gala",
+      date: "October 10, 2023",
+      location: "The Grand Hotel, Bangalore",
+      description: "Join us for an evening of celebration and support for our mission to empower communities.",
+      image: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    },
+  ];
+
+  const newsItems = [
+    {
+      id: 1,
+      title: "Medh Foundation Opens New Learning Center in Rural Maharashtra",
+      date: "July 10, 2023",
+      excerpt: "Expanding our reach to provide educational opportunities in underserved communities.",
+      image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    },
+    {
+      id: 2,
+      title: "Partnership Announcement: Corporate Support for Vocational Training",
+      date: "June 24, 2023",
+      excerpt: "A major tech company joins forces with Medh Foundation to enhance our skill development programs.",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    },
+  ];
+
+  return (
+    <section className="py-20 px-4 md:px-8 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Stay Updated</span>
+          <h2 className="mt-4 text-3xl md:text-4xl font-bold">Latest News & Events</h2>
+          <p className="mt-4 text-gray-700 max-w-3xl mx-auto">
+            Stay connected with our activities, achievements, and upcoming events as we work towards creating positive change.
+          </p>
+        </div>
+        
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Featured Event */}
+          <div className="lg:col-span-1 space-y-8">
+            <h3 className="text-xl font-bold border-b border-gray-200 pb-2">Upcoming Events</h3>
+            
+            {events.map((event) => (
+              <div key={event.id} className="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow">
+                <div className="flex items-start space-x-4">
+                  <div className="min-w-[60px] h-16 bg-primary-green text-white rounded-lg flex flex-col items-center justify-center">
+                    <span className="text-xs font-medium">
+                      {new Date(event.date).toLocaleString('default', { month: 'short' })}
+                    </span>
+                    <span className="text-2xl font-bold">
+                      {new Date(event.date).getDate()}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg">{event.title}</h4>
+                    <div className="flex items-center text-gray-500 text-sm mt-1">
+                      <Calendar className="w-4 h-4 mr-1" />
+                      <span>{event.date}</span>
+                    </div>
+                    <p className="text-gray-600 mt-2 text-sm">{event.location}</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mt-3 text-sm">{event.description}</p>
+                <div className="mt-4">
+                  <Link
+                    to="/resources#events"
+                    className="text-primary-green hover:text-primary-green/80 text-sm font-medium transition-colors"
+                  >
+                    Learn more
+                  </Link>
+                </div>
+              </div>
+            ))}
+            
+            <div className="text-center mt-6">
+              <Link 
+                to="/resources#events"
+                className="inline-flex items-center font-medium text-primary-green hover:text-primary-green/80 transition-colors"
+              >
+                View all events
+              </Link>
+            </div>
+          </div>
+          
+          {/* News Articles */}
+          <div className="lg:col-span-2 space-y-8">
+            <h3 className="text-xl font-bold border-b border-gray-200 pb-2">Recent News</h3>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {newsItems.map((news) => (
+                <div key={news.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src={news.image} 
+                      alt={news.title}
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <div className="text-gray-500 text-sm mb-2">{news.date}</div>
+                    <h4 className="font-bold text-lg mb-2">{news.title}</h4>
+                    <p className="text-gray-600 mb-4">{news.excerpt}</p>
+                    <Link
+                      to="/resources#news"
+                      className="text-primary-green hover:text-primary-green/80 text-sm font-medium transition-colors"
+                    >
+                      Read full story
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="text-center mt-6">
+              <Link 
+                to="/resources#news"
+                className="btn-outline"
+              >
+                View All News
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default News;
