@@ -36,8 +36,12 @@ const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold text-primary-green">Medh Foundation</span>
+        <Link to="/" className="flex items-center">
+          <img 
+            src="/lovable-uploads/3a6c0455-6485-4c5b-8979-288640557b66.png" 
+            alt="Medh Foundation Logo" 
+            className="h-10 md:h-12"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -98,3 +102,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
