@@ -1,9 +1,6 @@
-
 import { Heart, Lightbulb, Users } from "lucide-react";
-
 const Mission = () => {
-  return (
-    <section id="mission" className="py-20 px-4 md:px-8 bg-gradient-to-b from-white to-gray-50">
+  return <section id="mission" className="py-20 px-4 md:px-8 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <span className="bg-primary-green/10 text-primary-green px-4 py-1 rounded-full text-sm font-medium">Our Purpose</span>
@@ -19,9 +16,7 @@ const Mission = () => {
               <h3 className="text-3xl font-bold text-white">Our Mission</h3>
             </div>
             <div className="p-8">
-              <p className="text-gray-700 mb-6 text-lg">
-                To provide high-quality education to underprivileged children and empower single mothers through skill development and livelihood opportunities, creating self-sufficient communities across India.
-              </p>
+              <p className="text-gray-700 mb-6 text-lg text-justify">To break down financial barriers for children's education while simultaneously empowering single mothers through targeted skill development. We provide unwavering mentorship and foster a nurturing environment where both children and their mothers can flourish academically, personally, and professionally.</p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col items-center text-center p-4 rounded-lg bg-gray-50">
                   <Heart className="w-8 h-8 text-primary-green mb-2" />
@@ -35,14 +30,14 @@ const Mission = () => {
             </div>
           </div>
           
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden animate-slide-in" style={{ animationDelay: "0.2s" }}>
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden animate-slide-in" style={{
+          animationDelay: "0.2s"
+        }}>
             <div className="h-48 bg-secondary-orange/90 flex items-center justify-center">
               <h3 className="text-3xl font-bold text-white">Our Vision</h3>
             </div>
             <div className="p-8">
-              <p className="text-gray-700 mb-6 text-lg">
-                To create a future where every child has access to quality education and every single mother possesses the skills and resources to lead a dignified life, fostering communities that thrive together.
-              </p>
+              <p className="text-gray-700 mb-6 text-lg text-center">We aspire to create a world where every child accesses quality education and every single mother acquires empowering skills, regardless of economic background. By unlocking the potential of both generations, we aim to catalyze positive societal change and build resilient, self-sufficient families.</p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col items-center text-center p-4 rounded-lg bg-gray-50">
                   <Users className="w-8 h-8 text-secondary-orange mb-2" />
@@ -120,8 +115,6 @@ const Mission = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Mission;
