@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
@@ -15,43 +16,36 @@ const About = () => {
   const leadershipTeam = [
     {
       name: "Anil Nayak",
-      role: "Founder",
       image: "/lovable-uploads/1994e886-9ac1-4d3b-b674-24257faab00f.png",
       linkedIn: "https://www.linkedin.com/in/anilnayak2006/"
     },
     {
       name: "Jatin Wadhwa",
-      role: "Technology Lead",
       image: "/lovable-uploads/adafedbe-531e-4b59-abd9-9dfe8fdb2c0b.png",
       linkedIn: "https://www.linkedin.com/in/jatin-wadhwa-395139217/"
     },
     {
       name: "Neeraj Narain",
-      role: "Operations Director",
       image: "/lovable-uploads/a89d24e6-6243-4bda-a8c3-0160f6a7c639.png",
       linkedIn: "https://www.linkedin.com/in/neeraj-narain/"
     },
     {
       name: "Niti Saxena",
-      role: "Program Manager",
       image: "/lovable-uploads/e5743892-ccde-4349-a4d5-6bef77007eb1.png",
       linkedIn: "https://www.linkedin.com/in/niti-srivastava-saxena/"
     },
     {
       name: "Robinson Emmanuel",
-      role: "Community Relations",
       image: "/lovable-uploads/40f164b0-a792-4362-ba5a-5a680af661bc.png",
       linkedIn: "https://www.linkedin.com/in/robinson-emmanuel-531bb56b/"
     },
     {
       name: "Upendra Upadhyay",
-      role: "Education Advisor",
       image: "/lovable-uploads/de9ae4e0-c53e-4833-b3f1-801224a56329.png",
       linkedIn: "https://www.linkedin.com/in/upendra-upadhyay-7152181a/"
     },
     {
       name: "Vikram Srivastava",
-      role: "Finance Director",
       image: "/lovable-uploads/081ac9a9-9947-4907-b019-fd919f097b66.png",
       linkedIn: "https://www.linkedin.com/in/vikram-srivastava-3b483114/"
     }
@@ -131,8 +125,7 @@ const About = () => {
                       </Avatar>
                     </div>
                     
-                    <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                    <p className="text-sm text-gray-500 mb-4">{member.role}</p>
+                    <h3 className="text-xl font-bold mb-4">{member.name}</h3>
                     
                     <div className="mt-2">
                       <a 
