@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -38,7 +39,7 @@ const Approach = () => {
       title: "Intergenerational Skill Exchange",
       description: "Organize workshops where children teach digital skills to their mothers, while mothers share life skills and traditional knowledge with children.",
       icon: <HeartHandshake className="w-10 h-10 text-primary-green" />,
-      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Community Learning Circles",
@@ -62,7 +63,7 @@ const Approach = () => {
       title: "Green Skills Initiative",
       description: "Focus on teaching environmental sustainability skills to both children and mothers, preparing them for the growing green economy.",
       icon: <Leaf className="w-10 h-10 text-secondary-orange" />,
-      image: "https://images.unsplash.com/photo-1532104868343-da3ec346d556?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1592833159057-6fdc11a95ae3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Family Health and Wellness Program",
@@ -74,7 +75,7 @@ const Approach = () => {
       title: "Cross-Cultural Exchange Program",
       description: "Partner with international organizations to facilitate cultural exchanges, broadening horizons for both children and single mothers while developing global competencies.",
       icon: <Globe className="w-10 h-10 text-primary-green" />,
-      image: "https://images.unsplash.com/photo-1522619455623-fbb94fb21a21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1576267423048-15c0736f98ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     }
   ];
 

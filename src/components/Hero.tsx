@@ -35,8 +35,8 @@ const Hero = () => {
   };
 
   return <section className="relative h-screen w-full overflow-hidden bg-gradient-to-r from-gray-900 to-transparent">
-      <div className="h-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2">
-        <div className="relative z-10 flex flex-col justify-center items-start px-6 md:px-10 py-12">
+      <div className="h-full w-full grid grid-cols-1 md:grid-cols-2">
+        <div className="relative z-10 flex flex-col justify-center items-start px-6 md:px-10 py-12 max-w-7xl mx-auto">
           <div className="animate-fade-in max-w-xl">
             <div className="mb-6">
               <span className="bg-white/20 backdrop-blur-sm text-white px-5 py-1.5 rounded-full text-sm font-medium border border-white/30 shadow-lg">

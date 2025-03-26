@@ -7,7 +7,6 @@ import GlobalEngagement from "@/components/GlobalEngagement";
 import FinancialAidCSR from "@/components/FinancialAidCSR";
 import Navbar from "@/components/Navbar";
 import News from "@/components/News";
-import Partners from "@/components/Partners";
 import Programs from "@/components/Programs";
 import Footer from "@/components/Footer";
 import ApplicationButton from "@/components/ApplicationButton";
@@ -34,7 +33,6 @@ const Index = () => {
         <FinancialAidCSR />
         <Programs />
         <News />
-        <Partners />
       </main>
       <Footer />
     </div>
