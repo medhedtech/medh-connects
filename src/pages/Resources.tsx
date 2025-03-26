@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Calendar, FileText } from "lucide-react";
@@ -67,7 +66,7 @@ const Resources = () => {
       time: "10:00 AM - 4:00 PM",
       location: "Delhi Community Center",
       description: "Join our educational outreach program aimed at providing resources and mentorship to underprivileged children.",
-      image: "https://images.unsplash.com/photo-1610758366091-f4bda6a79337?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     },
     {
       id: 2,
@@ -295,39 +294,6 @@ const Resources = () => {
             </div>
           </div>
         </section>
-        
-        <section id="downloads" className="py-16 px-4 md:px-8 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-12">
-              <span className="bg-primary-green/10 text-primary-green px-4 py-1 rounded-full text-sm font-medium">Resources</span>
-              <h2 className="mt-4 text-3xl font-bold">Downloads & Publications</h2>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3].map((item) => (
-                <div key={item} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all">
-                  <div className="flex items-start">
-                    <div className="bg-primary-green/10 p-3 rounded-lg mr-4">
-                      <FileText className="text-primary-green w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold mb-2">Annual Report {2022 + item}</h3>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Comprehensive overview of our programs, impact, and financial information.
-                      </p>
-                      <a 
-                        href="#" 
-                        className="text-primary-green hover:text-primary-green/80 text-sm font-medium transition-colors"
-                      >
-                        Download PDF
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
@@ -335,3 +301,4 @@ const Resources = () => {
 };
 
 export default Resources;
+
