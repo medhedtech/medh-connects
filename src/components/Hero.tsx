@@ -6,13 +6,13 @@ import { ArrowDown } from "lucide-react";
 const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const slides = [{
-    image: "https://images.unsplash.com/photo-1627464315904-8ec976c10e6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    image: "https://images.unsplash.com/photo-1588075592446-265bad68d2b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     title: "Educating Children"
   }, {
-    image: "https://images.unsplash.com/photo-1627464969530-e11546097482?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    image: "https://images.unsplash.com/photo-1602541618394-9ed3a9c3bcb2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     title: "Empowering Mothers"
   }, {
-    image: "https://images.unsplash.com/photo-1613327636217-9eeb7a31bd1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    image: "https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     title: "Building Communities"
   }];
 
