@@ -1,32 +1,8 @@
 
-import { useState, useEffect } from "react";
 import DonateButton from "./DonateButton";
 import { ArrowDown } from "lucide-react";
 
 const Hero = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const slides = [{
-    image: "https://images.unsplash.com/photo-1588075592446-265bad68d2b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
-    title: "Educating Children"
-  }, {
-    image: "https://images.unsplash.com/photo-1602541618394-9ed3a9c3bcb2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
-    title: "Empowering Mothers"
-  }, {
-    image: "https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
-    title: "Building Communities"
-  }];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide(prev => prev === slides.length - 1 ? 0 : prev + 1);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
-  const handleSlideChange = (index: number) => {
-    setActiveSlide(index);
-  };
-
   const scrollToMission = () => {
     const missionSection = document.getElementById("mission");
     missionSection?.scrollIntoView({
@@ -58,18 +34,13 @@ const Hero = () => {
         </div>
 
         <div className="relative overflow-hidden h-full w-full hidden md:block">
-          {slides.map((slide, index) => <div key={index} className="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out" style={{
-          opacity: activeSlide === index ? 1 : 0,
-          zIndex: activeSlide === index ? 1 : 0
-        }}>
-              <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
-              <img src={slide.image} alt={slide.title} className="w-full h-full object-cover object-center animate-image-rotate" />
-            </div>)}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+          <img 
+            src="https://images.unsplash.com/photo-1588075592446-265bad68d2b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" 
+            alt="Children learning together" 
+            className="w-full h-full object-cover object-center" 
+          />
         </div>
-      </div>
-      
-      <div className="absolute bottom-10 left-1/2 md:left-1/4 transform -translate-x-1/2 flex space-x-3 z-20">
-        {slides.map((_, index) => <button key={index} onClick={() => handleSlideChange(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${activeSlide === index ? "bg-white w-8" : "bg-white/50"}`} aria-label={`Go to slide ${index + 1}`} />)}
       </div>
       
       <button onClick={scrollToMission} className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white hover:text-accent-green transition-colors z-20" aria-label="Scroll down">
@@ -77,13 +48,12 @@ const Hero = () => {
       </button>
 
       <div className="absolute inset-0 md:hidden">
-        {slides.map((slide, index) => <div key={index} className="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out" style={{
-        opacity: activeSlide === index ? 1 : 0,
-        zIndex: activeSlide === index ? 1 : 0
-      }}>
-            <div className="absolute inset-0 bg-black/70" />
-            <img src={slide.image} alt={slide.title} className="w-full h-full object-cover object-center animate-image-rotate" />
-          </div>)}
+        <div className="absolute inset-0 bg-black/70" />
+        <img 
+          src="https://images.unsplash.com/photo-1588075592446-265bad68d2b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" 
+          alt="Children learning together" 
+          className="w-full h-full object-cover object-center" 
+        />
       </div>
     </section>;
 };
