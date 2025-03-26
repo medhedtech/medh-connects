@@ -36,7 +36,7 @@ const Hero = () => {
         <div className="relative overflow-hidden h-full w-full hidden md:block">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
           <img 
-            src="https://images.unsplash.com/photo-1588075592446-265bad68d2b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" 
+            src="/lovable-uploads/c6506dc6-4108-4961-b853-faffe293908b.png" 
             alt="Children learning together" 
             className="w-full h-full object-cover object-center" 
           />
@@ -50,7 +50,7 @@ const Hero = () => {
       <div className="absolute inset-0 md:hidden">
         <div className="absolute inset-0 bg-black/70" />
         <img 
-          src="https://images.unsplash.com/photo-1588075592446-265bad68d2b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" 
+          src="/lovable-uploads/c6506dc6-4108-4961-b853-faffe293908b.png" 
           alt="Children learning together" 
           className="w-full h-full object-cover object-center" 
         />
