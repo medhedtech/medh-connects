@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -21,61 +20,61 @@ const Approach = () => {
       title: "Mentorship Matching Program",
       description: "Pair successful professionals with single mothers and their children for long-term guidance and support in both education and career development.",
       icon: <GraduationCap className="w-10 h-10 text-primary-green" />,
-      image: "https://images.unsplash.com/photo-1610758366091-f4bda6a79337?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Mobile Learning Labs",
       description: "Deploy fully-equipped mobile classrooms to reach remote areas, offering both children's education and skill development courses for single mothers.",
       icon: <Bus className="w-10 h-10 text-secondary-orange" />,
-      image: "https://images.unsplash.com/photo-1596305589430-5b26f0b7a86d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Family Entrepreneurship Incubator",
       description: "Create a program where single mothers and their children can collaboratively develop small business ideas, fostering both educational and entrepreneurial skills.",
       icon: <Lightbulb className="w-10 h-10 text-accent-green" />,
-      image: "https://images.unsplash.com/photo-1592188657836-c9d31e397582?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Intergenerational Skill Exchange",
       description: "Organize workshops where children teach digital skills to their mothers, while mothers share life skills and traditional knowledge with children.",
       icon: <HeartHandshake className="w-10 h-10 text-primary-green" />,
-      image: "https://images.unsplash.com/photo-1593526613712-7b4b8e6e2672?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Community Learning Circles",
       description: "Establish neighborhood-based study and skill-sharing groups, fostering a supportive learning environment for both generations.",
       icon: <Users className="w-10 h-10 text-secondary-orange" />,
-      image: "https://images.unsplash.com/photo-1593592827893-20dc7d35c270?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Virtual Reality Career Exploration",
       description: "Utilize VR technology to allow children and single mothers to experience various professions, inspiring future career paths.",
       icon: <Headset className="w-10 h-10 text-accent-green" />,
-      image: "https://images.unsplash.com/photo-1613294326794-e7c71a208b46?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Flexible Childcare Network",
       description: "Develop a system where single mothers can offer and receive childcare services, allowing them to attend skill development courses while ensuring their children are cared for.",
       icon: <Heart className="w-10 h-10 text-primary-green" />,
-      image: "https://images.unsplash.com/photo-1595674617751-733aaefe59d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1535572290543-960a8046f5af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Green Skills Initiative",
       description: "Focus on teaching environmental sustainability skills to both children and mothers, preparing them for the growing green economy.",
       icon: <Leaf className="w-10 h-10 text-secondary-orange" />,
-      image: "https://images.unsplash.com/photo-1627570437251-af4df68081f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1532104868343-da3ec346d556?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Family Health and Wellness Program",
       description: "Integrate health education and wellness practices into both children's curriculum and mothers' skill development courses, promoting holistic family well-being.",
       icon: <Heart className="w-10 h-10 text-accent-green" />,
-      image: "https://images.unsplash.com/photo-1597423244036-ef5570d9a3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1505455184862-554165e5f6ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     },
     {
       title: "Cross-Cultural Exchange Program",
       description: "Partner with international organizations to facilitate cultural exchanges, broadening horizons for both children and single mothers while developing global competencies.",
       icon: <Globe className="w-10 h-10 text-primary-green" />,
-      image: "https://images.unsplash.com/photo-1541522787793-94664273feee?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+      image: "https://images.unsplash.com/photo-1522619455623-fbb94fb21a21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
     }
   ];
 

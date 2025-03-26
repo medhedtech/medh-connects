@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import DonateButton from "./DonateButton";
 import { ArrowDown } from "lucide-react";
@@ -5,13 +6,13 @@ import { ArrowDown } from "lucide-react";
 const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const slides = [{
-    image: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    image: "https://images.unsplash.com/photo-1627464315904-8ec976c10e6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     title: "Educating Children"
   }, {
-    image: "https://images.unsplash.com/photo-1596305589430-5b26f0b7a86d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    image: "https://images.unsplash.com/photo-1627464969530-e11546097482?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     title: "Empowering Mothers"
   }, {
-    image: "https://images.unsplash.com/photo-1592188657836-c9d31e397582?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    image: "https://images.unsplash.com/photo-1613327636217-9eeb7a31bd1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
     title: "Building Communities"
   }];
 

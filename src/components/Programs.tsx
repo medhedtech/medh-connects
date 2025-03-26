@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -8,21 +7,21 @@ const Programs = () => {
       id: "education",
       title: "Children's Education Initiative",
       description: "Providing quality education and academic support to underprivileged children through innovative teaching methods and modern facilities.",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      image: "https://images.unsplash.com/photo-1627556704302-624286467c65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
       color: "bg-primary-green"
     },
     {
       id: "mothers",
       title: "Single Mothers' Skill Development",
       description: "Empowering single mothers through vocational training, digital literacy, and entrepreneurship programs to achieve financial independence.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      image: "https://images.unsplash.com/photo-1535572290543-960a8046f5af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
       color: "bg-secondary-orange"
     },
     {
       id: "community",
       title: "Community Empowerment Projects",
       description: "Building stronger communities through health awareness, environmental initiatives, and cultural programs that foster collective growth.",
-      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
       color: "bg-accent-green"
     }
   ];
