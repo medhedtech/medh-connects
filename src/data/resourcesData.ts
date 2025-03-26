@@ -25,7 +25,7 @@ export const blogPosts = [
     date: "January 30, 2025",
     author: "Neha Gupta",
     excerpt: "Why community-led initiatives are essential for sustainable development and lasting social change.",
-    image: "https://images.unsplash.com/photo-1559660499-2ec67e562d16?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     category: "Community"
   },
   {
