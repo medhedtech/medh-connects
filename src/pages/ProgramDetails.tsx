@@ -177,7 +177,7 @@ const ProgramDetails = () => {
       title: "Resilience Building",
       icon: <Lightbulb className="h-10 w-10 text-accent-green" />,
       description: "Build mental strength and adaptability to overcome life's challenges.",
-      image: "https://images.unsplash.com/photo-1501286353178-1ec871214838?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
       color: "bg-accent-green",
       courses: [
         "Coping strategies for adversity",
