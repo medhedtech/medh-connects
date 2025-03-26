@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Calendar, FileText } from "lucide-react";
@@ -44,7 +45,7 @@ const Resources = () => {
       date: "January 30, 2025",
       author: "Neha Gupta",
       excerpt: "Why community-led initiatives are essential for sustainable development and lasting social change.",
-      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1559660499-2ec67e562d16?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       category: "Community"
     },
     {
@@ -53,7 +54,7 @@ const Resources = () => {
       date: "January 25, 2025",
       author: "Rajesh Kumar",
       excerpt: "Addressing challenges and opportunities in making digital education accessible to all segments of society.",
-      image: "https://images.unsplash.com/photo-1503551723871-2c959d605148?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      image: "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       category: "Education"
     },
   ];
