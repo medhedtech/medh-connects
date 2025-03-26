@@ -82,7 +82,7 @@ const About = () => {
               </div>
               <div className="rounded-xl overflow-hidden shadow-xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1627570437251-af4df68081f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+                  src="https://images.pexels.com/photos/8422403/pexels-photo-8422403.jpeg?auto=compress&cs=tinysrgb&w=1500"
                   alt="Medh Foundation journey"
                   className="w-full h-full object-cover"
                 />
