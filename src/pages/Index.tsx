@@ -20,10 +20,17 @@ const Index = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Filter to show only the most important FAQs on the homepage
-  const importantFaqs = faqs.filter(faq => 
-    faq.id <= 9 // Show only first 9 FAQs across categories
-  );
+  // Filter to show a good selection of FAQs on the homepage across categories
+  const homepageFaqs = [];
+  
+  // Get 3 FAQs from each major category
+  const donationFaqs = faqs.filter(faq => faq.category === "Donations").slice(0, 3);
+  const programFaqs = faqs.filter(faq => faq.category === "Programs").slice(0, 2);
+  const volunteerFaqs = faqs.filter(faq => faq.category === "Volunteering").slice(0, 2);
+  const financialSupportFaqs = faqs.filter(faq => faq.category === "Financial Support").slice(0, 2);
+  
+  // Combine all the filtered FAQs
+  homepageFaqs.push(...donationFaqs, ...programFaqs, ...volunteerFaqs, ...financialSupportFaqs);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,7 +44,7 @@ const Index = () => {
         <GlobalEngagement />
         <FinancialAidCSR />
         <Programs />
-        <FaqSection faqs={importantFaqs} />
+        <FaqSection faqs={homepageFaqs} />
         <News />
       </main>
       <Footer />

@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import FormTermsAndCaptcha from "@/components/FormTermsAndCaptcha";
+import { faqs } from "@/data/resourcesData";
 
 // Contact form schema with terms acceptance
 const contactFormSchema = z.object({
@@ -37,6 +38,14 @@ const Contact = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [isSearching, setIsSearching] = useState(false);
+  
+  // Get FAQs for each category
+  const donationFaqs = faqs.filter(faq => faq.category === "Donations").slice(0, 8);
+  const financialSupportFaqs = faqs.filter(faq => faq.category === "Financial Support" || (!faq.category && /financial|support|apply/.test(faq.question.toLowerCase()))).slice(0, 8);
+  const volunteeringFaqs = faqs.filter(faq => faq.category === "Volunteering").slice(0, 8);
+  const programsFaqs = faqs.filter(faq => faq.category === "Programs").slice(0, 8);
+  const generalFaqs = faqs.filter(faq => faq.category === "General" || !faq.category).slice(0, 8);
+  const partnershipFaqs = faqs.filter(faq => faq.category === "Partnerships").slice(0, 8);
 
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
@@ -78,12 +87,20 @@ const Contact = () => {
     setActiveCategory(category);
     toast({
       title: `Viewing ${category} FAQs`,
-      description: category === "All" ? "Showing most relevant FAQs from each category" : `Showing all ${category} questions`,
+      description: category === "All" ? "Showing relevant FAQs from each category" : `Showing all ${category} questions`,
     });
   };
 
   // Categories for FAQs
-  const categories = ["All", "Donations", "Financial Support", "Volunteering", "Programs"];
+  const categories = ["All", "Donations", "Financial Support", "Volunteering", "Programs", "Partnerships", "General"];
+
+  // Filter FAQs based on search query and active category
+  const getFilteredFaqs = (categoryFaqs: typeof faqs) => {
+    return categoryFaqs.filter((faq) => {
+      return faq.question.toLowerCase().includes(searchQuery.toLowerCase()) || 
+             faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -392,63 +409,22 @@ const Contact = () => {
                     </h3>
                     <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "Donations" ? "hidden" : ""}`}>
                       <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
-                        <AccordionItem value="donor-1" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                Are donations to the Medh Foundation tax-deductible?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                Yes, all donations to the Medh Foundation are tax-deductible under Section 80G of the Income Tax Act in India. You will receive an official receipt for your contribution, which can be used for tax deduction purposes.
+                        {getFilteredFaqs(donationFaqs).map((faq) => (
+                          <AccordionItem key={faq.id} value={`donor-${faq.id}`} className="border-b border-gray-100 px-1">
+                            <AccordionTrigger className="hover:no-underline py-4 px-4">
+                              <div className="flex items-start text-left">
+                                <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                                <h3 className="text-lg font-medium">{faq.question}</h3>
                               </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="donor-2" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                How are my donations utilized?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                Approximately 85% of all donations go directly to our programs supporting children's education and single mothers' skill development. The remaining funds cover essential administrative and fundraising costs to ensure sustainable operation of our programs.
+                            </AccordionTrigger>
+                            <AccordionContent className="px-4 pb-6">
+                              <div className="flex pt-2">
+                                <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                                <div className="text-gray-600">{faq.answer}</div>
                               </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        {/* More donation FAQs would go here, hidden by default */}
-                        <AccordionItem value="donor-more" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                Can I specify how my donation is used?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                Yes, donors can specify which program or initiative they would like their donation to support. You can indicate your preference during the donation process or contact us directly to discuss specific allocation of your contribution.
-                              </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
                       </Accordion>
                     </div>
                   </div>
@@ -463,62 +439,22 @@ const Contact = () => {
                     </h3>
                     <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "Financial Support" ? "hidden" : ""}`}>
                       <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
-                        <AccordionItem value="item-1" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                How can I apply for financial support?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                You can apply for financial support by clicking on the "Online Application for Financial Support" button available on our website. The application process involves filling out a form with details about the child, educational information, family situation, and the type of support needed.
+                        {getFilteredFaqs(financialSupportFaqs).map((faq) => (
+                          <AccordionItem key={faq.id} value={`support-${faq.id}`} className="border-b border-gray-100 px-1">
+                            <AccordionTrigger className="hover:no-underline py-4 px-4">
+                              <div className="flex items-start text-left">
+                                <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                                <h3 className="text-lg font-medium">{faq.question}</h3>
                               </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-2" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                What documents are required for the financial support application?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                Required documents include the child's identification (Aadhar Card, birth certificate), school ID, recent fee receipts, academic records, parent identification documents, proof of residence, and income verification. Single mothers should provide relevant documentation regarding their marital status.
+                            </AccordionTrigger>
+                            <AccordionContent className="px-4 pb-6">
+                              <div className="flex pt-2">
+                                <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                                <div className="text-gray-600">{faq.answer}</div>
                               </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-3" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                What types of financial support does the foundation offer?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                The foundation offers several types of financial support including tuition assistance, books and supplies funding, and transportation assistance. Each type of support is designed to address specific educational needs and remove barriers to education.
-                              </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
                       </Accordion>
                     </div>
                   </div>
@@ -533,62 +469,22 @@ const Contact = () => {
                     </h3>
                     <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "Volunteering" ? "hidden" : ""}`}>
                       <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
-                        <AccordionItem value="vol-1" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                How can I volunteer with the Medh Foundation?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                You can volunteer with us by visiting the "Get Involved" section of our website and filling out the volunteer application form. We welcome volunteers with various skills and interests, including teaching, mentoring, administrative support, event planning, and more.
+                        {getFilteredFaqs(volunteeringFaqs).map((faq) => (
+                          <AccordionItem key={faq.id} value={`vol-${faq.id}`} className="border-b border-gray-100 px-1">
+                            <AccordionTrigger className="hover:no-underline py-4 px-4">
+                              <div className="flex items-start text-left">
+                                <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                                <h3 className="text-lg font-medium">{faq.question}</h3>
                               </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="vol-2" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                What skills are most needed for volunteering?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                We value volunteers with teaching, counseling, administrative, marketing, event planning, and fundraising skills. However, the most important qualities are commitment, empathy, and a passion for helping children and single mothers achieve self-sufficiency.
+                            </AccordionTrigger>
+                            <AccordionContent className="px-4 pb-6">
+                              <div className="flex pt-2">
+                                <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                                <div className="text-gray-600">{faq.answer}</div>
                               </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="vol-3" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                Is there a minimum time commitment for volunteering?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                While we appreciate any time you can give, we recommend a minimum commitment of 4-6 hours per month for at least three months. This allows for meaningful engagement with our programs and the people we serve.
-                              </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
                       </Accordion>
                     </div>
                   </div>
@@ -603,62 +499,87 @@ const Contact = () => {
                     </h3>
                     <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "Programs" ? "hidden" : ""}`}>
                       <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
-                        <AccordionItem value="prog-1" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                What educational programs does the foundation offer?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                Our foundation offers various educational programs including primary education support, secondary education scholarships, higher education grants, vocational training, and specialized tutoring services. We also provide educational materials, digital learning resources, and mentorship programs.
+                        {getFilteredFaqs(programsFaqs).map((faq) => (
+                          <AccordionItem key={faq.id} value={`prog-${faq.id}`} className="border-b border-gray-100 px-1">
+                            <AccordionTrigger className="hover:no-underline py-4 px-4">
+                              <div className="flex items-start text-left">
+                                <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                                <h3 className="text-lg font-medium">{faq.question}</h3>
                               </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="prog-2" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                What skill development programs are available for single mothers?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                Our skill development programs for single mothers include vocational training in areas such as tailoring, beauty services, cooking, handicrafts, computer literacy, and entrepreneurship. We also provide financial literacy education, business planning support, and micro-enterprise development assistance.
+                            </AccordionTrigger>
+                            <AccordionContent className="px-4 pb-6">
+                              <div className="flex pt-2">
+                                <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                                <div className="text-gray-600">{faq.answer}</div>
                               </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="prog-3" className="border-b border-gray-100 px-1">
-                          <AccordionTrigger className="hover:no-underline py-4 px-4">
-                            <div className="flex items-start text-left">
-                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
-                              <h3 className="text-lg font-medium">
-                                How long are the typical program durations?
-                              </h3>
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-4 pb-6">
-                            <div className="flex pt-2">
-                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
-                              <div className="text-gray-600">
-                                Program durations vary based on the type of support. Educational support typically follows academic cycles (1-3 years), while skill development programs for single mothers typically range from 3-12 months depending on the complexity of skills being taught and the learning pace of participants.
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
+                      </Accordion>
+                    </div>
+                  </div>
+                  
+                  {/* For Partnerships Section - NEW */}
+                  <div className="mb-8">
+                    <h3 className={`text-xl font-bold mb-4 text-primary-green flex items-center ${activeCategory !== "All" && activeCategory !== "Partnerships" ? "hidden" : ""}`}>
+                      <span className="bg-primary-green/10 p-2 rounded-full mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-green">
+                          <path d="M20 5H8.5a2.5 2.5 0 0 0 0 5H20" />
+                          <path d="M20 14h-8.5a2.5 2.5 0 0 0 0 5H20" />
+                          <line x1="4" x2="4" y1="10" y2="10" />
+                          <line x1="4" x2="4" y1="19" y2="19" />
+                        </svg>
+                      </span>
+                      For Partners & Collaborators
+                    </h3>
+                    <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "Partnerships" ? "hidden" : ""}`}>
+                      <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
+                        {getFilteredFaqs(partnershipFaqs).map((faq) => (
+                          <AccordionItem key={faq.id} value={`partner-${faq.id}`} className="border-b border-gray-100 px-1">
+                            <AccordionTrigger className="hover:no-underline py-4 px-4">
+                              <div className="flex items-start text-left">
+                                <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                                <h3 className="text-lg font-medium">{faq.question}</h3>
                               </div>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
+                            </AccordionTrigger>
+                            <AccordionContent className="px-4 pb-6">
+                              <div className="flex pt-2">
+                                <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                                <div className="text-gray-600">{faq.answer}</div>
+                              </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
+                      </Accordion>
+                    </div>
+                  </div>
+                  
+                  {/* General Questions Section - NEW */}
+                  <div className="mb-8">
+                    <h3 className={`text-xl font-bold mb-4 text-primary-green flex items-center ${activeCategory !== "All" && activeCategory !== "General" ? "hidden" : ""}`}>
+                      <span className="bg-primary-green/10 p-2 rounded-full mr-3">
+                        <HelpCircle className="text-primary-green h-5 w-5" />
+                      </span>
+                      General Questions
+                    </h3>
+                    <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "General" ? "hidden" : ""}`}>
+                      <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
+                        {getFilteredFaqs(generalFaqs).map((faq) => (
+                          <AccordionItem key={faq.id} value={`general-${faq.id}`} className="border-b border-gray-100 px-1">
+                            <AccordionTrigger className="hover:no-underline py-4 px-4">
+                              <div className="flex items-start text-left">
+                                <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                                <h3 className="text-lg font-medium">{faq.question}</h3>
+                              </div>
+                            </AccordionTrigger>
+                            <AccordionContent className="px-4 pb-6">
+                              <div className="flex pt-2">
+                                <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                                <div className="text-gray-600">{faq.answer}</div>
+                              </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
                       </Accordion>
                     </div>
                   </div>

@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { ChevronDown, Search, HelpCircle, Filter, BookOpen } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
@@ -19,7 +18,6 @@ interface FaqSectionProps {
 
 const FaqSection = ({ faqs }: FaqSectionProps) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [openItem, setOpenItem] = useState<number | null>(null);
   const { toast } = useToast();
 
   const categories = Array.from(new Set(faqs.map((faq) => faq.category || "General")));
@@ -41,14 +39,14 @@ const FaqSection = ({ faqs }: FaqSectionProps) => {
       );
     }
     
-    // For "All" category, show 2-3 most relevant FAQs from each category
+    // For "All" category, show most relevant FAQs from each category
     const faqsByCategory: Record<string, Faq[]> = {};
     
-    // Group FAQs by category
+    // Group FAQs by category, showing more from each category now
     categories.forEach(category => {
       faqsByCategory[category] = searchFiltered.filter(faq => 
         faq.category === category || (!faq.category && category === "General")
-      ).slice(0, 3); // Take top 3 from each category
+      ).slice(0, 4); // Take top 4 from each category
     });
     
     // Flatten the grouped FAQs into a single array
