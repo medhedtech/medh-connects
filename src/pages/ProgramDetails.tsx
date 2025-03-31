@@ -53,7 +53,7 @@ const ProgramDetails = () => {
         "Nutritional support",
         "Educational scholarships"
       ],
-      impact: "Over 5,000 children have benefited from our education programs, with 85% showing significant improvement in academic performance and overall development.",
+      impact: "We are committed to supporting over 5,000 children through our education programs in the next three years, with a target of ensuring at least 85% show significant improvement in academic performance and overall development.",
       image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
       color: "bg-primary-green"
     },
@@ -75,7 +75,7 @@ const ProgramDetails = () => {
         "Job placement assistance",
         "Ongoing mentorship"
       ],
-      impact: "Over 2,000 single mothers have gained financial independence through our skill development programs, with 70% reporting a significant increase in income and improved quality of life.",
+      impact: "We aim to help 2,000 single mothers gain financial independence through our skill development programs over the next four years, with a goal of ensuring at least 70% experience a significant increase in income and improved quality of life.",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
       color: "bg-secondary-orange"
     },
@@ -97,7 +97,7 @@ const ProgramDetails = () => {
         "Conflict resolution training",
         "Civic engagement initiatives"
       ],
-      impact: "We have implemented community empowerment projects in 25 localities, benefiting over 10,000 people and resulting in measurable improvements in health indicators, environmental conditions, and social cohesion.",
+      impact: "We plan to implement community empowerment projects in 25 localities over the next five years, with the goal of benefiting more than 10,000 people and creating measurable improvements in health indicators, environmental conditions, and social cohesion.",
       image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
       color: "bg-accent-green"
     }
