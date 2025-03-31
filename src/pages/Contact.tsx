@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone, Users, Calendar, FileText, CreditCard, HelpCircle, Search, Filter } from "lucide-react";
@@ -331,10 +330,10 @@ const Contact = () => {
                   </p>
                 </div>
 
-                {/* Visual banner/image */}
+                {/* Visual banner/image - UPDATED IMAGE HERE */}
                 <div className="relative rounded-xl overflow-hidden mb-10 shadow-xl">
                   <img 
-                    src="/public/lovable-uploads/1994e886-9ac1-4d3b-b674-24257faab00f.png" 
+                    src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" 
                     alt="People discussing questions and answers" 
                     className="w-full h-64 object-cover"
                   />
@@ -738,8 +737,6 @@ const Contact = () => {
   );
 };
 
-export default Contact;
-
 function Heart(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -759,3 +756,4 @@ function Heart(props: React.SVGProps<SVGSVGElement>) {
   )
 }
 
+export default Contact;
