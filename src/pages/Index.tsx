@@ -11,7 +11,6 @@ import Programs from "@/components/Programs";
 import Footer from "@/components/Footer";
 import ApplicationSection from "@/components/ApplicationSection";
 import { useEffect } from "react";
-import FormTermsAndCaptcha from "@/components/FormTermsAndCaptcha";
 
 const Index = () => {
   useEffect(() => {

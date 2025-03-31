@@ -7,10 +7,10 @@ import {
   Share2, 
   Award, 
   Megaphone, 
-  School,
-  Network
+  School
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import GlobalEngagementForm from "./GlobalEngagementForm";
 
 interface StrategyCardProps {
   title: string;
@@ -72,9 +72,6 @@ const GlobalEngagement = () => {
             <ListItem>
               <strong>Community Building:</strong> Create a strong volunteer community through regular meetings and networking events.
             </ListItem>
-            <div className="mt-6">
-              <Button variant="outline" className="w-full">Join as Volunteer</Button>
-            </div>
           </StrategyCard>
 
           {/* Partnerships */}
@@ -92,9 +89,6 @@ const GlobalEngagement = () => {
             <ListItem>
               <strong>Formal Agreements:</strong> Establish clear frameworks outlining roles and responsibilities for accountability.
             </ListItem>
-            <div className="mt-6">
-              <Button variant="outline" className="w-full">Become a Partner</Button>
-            </div>
           </StrategyCard>
 
           {/* Online Platforms */}
@@ -112,9 +106,6 @@ const GlobalEngagement = () => {
             <ListItem>
               <strong>Global Forums:</strong> Create discussion boards where participants can exchange ideas and collaborate on projects.
             </ListItem>
-            <div className="mt-6">
-              <Button variant="outline" className="w-full">Join Our Platform</Button>
-            </div>
           </StrategyCard>
 
           {/* Awareness Campaigns */}
@@ -132,9 +123,6 @@ const GlobalEngagement = () => {
             <ListItem>
               <strong>Collaborative Campaigns:</strong> Partner with media outlets and influential figures to amplify our message.
             </ListItem>
-            <div className="mt-6">
-              <Button variant="outline" className="w-full">Share Our Story</Button>
-            </div>
           </StrategyCard>
 
           {/* Recognition */}
@@ -152,9 +140,6 @@ const GlobalEngagement = () => {
             <ListItem>
               <strong>Impact Reports:</strong> Provide regular feedback showing how contributions have made a difference.
             </ListItem>
-            <div className="mt-6">
-              <Button variant="outline" className="w-full">View Recognition Program</Button>
-            </div>
           </StrategyCard>
 
           {/* Educational Support */}
@@ -172,10 +157,12 @@ const GlobalEngagement = () => {
             <ListItem>
               <strong>Technology Integration:</strong> Implement digital tools to enhance learning experiences and outcomes.
             </ListItem>
-            <div className="mt-6">
-              <Button variant="outline" className="w-full">Support Education</Button>
-            </div>
           </StrategyCard>
+        </div>
+
+        {/* Central Contact Button */}
+        <div className="mt-12 flex justify-center">
+          <GlobalEngagementForm />
         </div>
 
         {/* Featured Strategy */}
