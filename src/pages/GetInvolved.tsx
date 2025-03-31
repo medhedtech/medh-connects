@@ -1,8 +1,7 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DonationModal from "@/components/DonationModal";
-import { Heart, Clock, Users, Building, Calendar, Globe, ChevronRight, DollarSign, Handshake, Trophy, CheckCircle, BarChart3 } from "lucide-react";
+import { Heart, Clock, Users, Building, Calendar, Globe, ChevronRight, DollarSign, Handshake, Trophy, CheckCircle, BarChart3, BookOpen, Palette, UserPlus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import FormTermsAndCaptcha from "@/components/FormTermsAndCaptcha";
 import CSRConsultationForm from "@/components/CSRConsultationForm";
 import { useToast } from "@/hooks/use-toast";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
 const volunteerFormSchema = z.object({
   firstName: z.string().min(2, {
@@ -81,10 +81,8 @@ const GetInvolved = () => {
   };
 
   useEffect(() => {
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
     
-    // Handle hash links for specific sections
     const { hash } = window.location;
     if (hash) {
       const element = document.getElementById(hash.substring(1));
@@ -498,7 +496,7 @@ const GetInvolved = () => {
           </div>
         </section>
 
-        <section id="volunteer" className="py-16 px-4 md:px-8 bg-gray-50">
+        <section id="volunteer" className="py-16 px-4 md:px-8 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Join Our Team</span>
@@ -508,244 +506,314 @@ const GetInvolved = () => {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-6">
-                <div className="h-12 w-12 bg-primary-green/10 rounded-full flex items-center justify-center mb-4">
-                  <Users className="text-primary-green w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Educational Support</h3>
-                <p className="text-gray-600 mb-4">
-                  Assist in teaching, tutoring, and organizing educational activities for children in our programs.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-2 text-primary-green" />
-                    <span>Minimum 4 hours per week</span>
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Calendar className="w-4 h-4 mr-2 text-primary-green" />
-                    <span>Weekday afternoons or weekends</span>
-                  </li>
-                </ul>
-                <a 
-                  href="#volunteer-form" 
-                  className="inline-block text-primary-green hover:text-primary-green/80 font-medium transition-colors"
-                >
-                  Apply Now
-                </a>
-              </div>
-              
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-6">
-                <div className="h-12 w-12 bg-secondary-orange/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-secondary-orange w-6 h-6">
-                    <path d="M12 3v12"></path>
-                    <path d="m8 11 4 4 4-4"></path>
-                    <path d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-                    <path d="M20 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-                    <path d="M8 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-                    <path d="M20 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-                    <path d="M6 5h12"></path>
-                    <path d="M6 19h12"></path>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold mb-3">Skill Development</h3>
-                <p className="text-gray-600 mb-4">
-                  Share your professional expertise to train single mothers in various vocational and business skills.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-2 text-secondary-orange" />
-                    <span>Flexible hours based on program schedule</span>
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Calendar className="w-4 h-4 mr-2 text-secondary-orange" />
-                    <span>Short-term or ongoing commitment</span>
-                  </li>
-                </ul>
-                <a 
-                  href="#volunteer-form" 
-                  className="inline-block text-secondary-orange hover:text-secondary-orange/80 font-medium transition-colors"
-                >
-                  Apply Now
-                </a>
-              </div>
-              
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-6">
-                <div className="h-12 w-12 bg-accent-green/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-green w-6 h-6">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" x2="12" y1="8" y2="16"></line>
-                    <line x1="8" x2="16" y1="12" y2="12"></line>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold mb-3">Event Support</h3>
-                <p className="text-gray-600 mb-4">
-                  Help organize and manage community events, fundraisers, and awareness campaigns.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-2 text-accent-green" />
-                    <span>As needed for scheduled events</span>
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Calendar className="w-4 h-4 mr-2 text-accent-green" />
-                    <span>Weekend availability preferred</span>
-                  </li>
-                </ul>
-                <a 
-                  href="#volunteer-form" 
-                  className="inline-block text-accent-green hover:text-accent-green/80 font-medium transition-colors"
-                >
-                  Apply Now
-                </a>
-              </div>
-            </div>
-            
-            <div id="volunteer-form" className="mt-12 bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
-              <h3 className="text-xl font-bold mb-6">Volunteer Application Form</h3>
-              <Form {...volunteerForm}>
-                <form onSubmit={volunteerForm.handleSubmit(onVolunteerSubmit)} className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <FormField
-                      control={volunteerForm.control}
-                      name="firstName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>First Name</FormLabel>
-                          <FormControl>
-                            <input 
-                              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+            <div className="grid md:grid-cols-2 gap-10">
+              <div className="space-y-10">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                  <div className="relative h-48 overflow-hidden">
+                    <div className="absolute inset-0 bg-primary-green/50"></div>
+                    <img 
+                      src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                      alt="Children in classroom" 
+                      className="w-full h-full object-cover"
                     />
-                    
-                    <FormField
-                      control={volunteerForm.control}
-                      name="lastName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Last Name</FormLabel>
-                          <FormControl>
-                            <input 
-                              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="absolute top-4 left-4 bg-white p-2 rounded-full">
+                      <BookOpen className="h-6 w-6 text-primary-green" />
+                    </div>
                   </div>
-                  
-                  <FormField
-                    control={volunteerForm.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email Address</FormLabel>
-                        <FormControl>
-                          <input 
-                            type="email"
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                            {...field}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">Educational Support</h3>
+                    <p className="text-gray-600 mb-4">
+                      Assist in teaching, tutoring, and organizing educational activities for children in our programs. Help shape young minds and build foundations for their future.
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Clock className="w-4 h-4 mr-2 text-primary-green" />
+                        <span>Minimum 4 hours per week</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Calendar className="w-4 h-4 mr-2 text-primary-green" />
+                        <span>Weekday afternoons or weekends</span>
+                      </div>
+                    </div>
+                    <a 
+                      href="#volunteer-form" 
+                      className="inline-flex items-center text-primary-green hover:text-primary-green/80 font-medium transition-colors"
+                    >
+                      Apply Now
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                  <div className="relative h-48 overflow-hidden">
+                    <div className="absolute inset-0 bg-secondary-orange/50"></div>
+                    <img 
+                      src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                      alt="Women learning skills" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4 bg-white p-2 rounded-full">
+                      <Palette className="h-6 w-6 text-secondary-orange" />
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">Skill Development</h3>
+                    <p className="text-gray-600 mb-4">
+                      Share your professional expertise to train single mothers in various vocational and business skills. Empower women to achieve financial independence and secure futures.
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Clock className="w-4 h-4 mr-2 text-secondary-orange" />
+                        <span>Flexible hours</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Calendar className="w-4 h-4 mr-2 text-secondary-orange" />
+                        <span>Short-term or ongoing</span>
+                      </div>
+                    </div>
+                    <a 
+                      href="#volunteer-form" 
+                      className="inline-flex items-center text-secondary-orange hover:text-secondary-orange/80 font-medium transition-colors"
+                    >
+                      Apply Now
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+                  <div className="relative h-48 overflow-hidden">
+                    <div className="absolute inset-0 bg-accent-green/50"></div>
+                    <img 
+                      src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                      alt="Community event" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4 bg-white p-2 rounded-full">
+                      <UserPlus className="h-6 w-6 text-accent-green" />
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">Event Support</h3>
+                    <p className="text-gray-600 mb-4">
+                      Help organize and manage community events, fundraisers, and awareness campaigns. Use your organizational and people skills to create impactful community experiences.
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Clock className="w-4 h-4 mr-2 text-accent-green" />
+                        <span>As needed for events</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Calendar className="w-4 h-4 mr-2 text-accent-green" />
+                        <span>Weekends preferred</span>
+                      </div>
+                    </div>
+                    <a 
+                      href="#volunteer-form" 
+                      className="inline-flex items-center text-accent-green hover:text-accent-green/80 font-medium transition-colors"
+                    >
+                      Apply Now
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="bg-gray-50 border border-gray-100 rounded-xl p-6">
+                  <div className="flex items-start">
+                    <div className="bg-primary-green/10 p-3 rounded-full mr-4">
+                      <Users className="h-6 w-6 text-primary-green" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold mb-2">Volunteer Benefits</h3>
+                      <ul className="space-y-2">
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-primary-green mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700">Gain valuable experience in the social sector</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-primary-green mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700">Make a direct impact on children's lives and women's empowerment</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-primary-green mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700">Receive a certificate of appreciation and recommendation letter</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-primary-green mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700">Network with like-minded individuals and professionals</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <div id="volunteer-form" className="bg-white rounded-xl shadow-lg overflow-hidden sticky top-24">
+                  <div className="bg-primary-green p-6 text-white">
+                    <h3 className="text-xl font-bold">Volunteer Application Form</h3>
+                    <p className="text-sm mt-1 text-white/80">Join our team of dedicated volunteers</p>
+                  </div>
+                  <div className="relative h-40 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                      alt="Team of volunteers"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent"></div>
+                  </div>
+                  <div className="p-6">
+                    <Form {...volunteerForm}>
+                      <form onSubmit={volunteerForm.handleSubmit(onVolunteerSubmit)} className="space-y-4">
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <FormField
+                            control={volunteerForm.control}
+                            name="firstName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>First Name</FormLabel>
+                                <FormControl>
+                                  <input 
+                                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                    placeholder="Your first name"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={volunteerForm.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Phone Number</FormLabel>
-                        <FormControl>
-                          <input 
-                            type="tel"
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                            {...field}
+                          
+                          <FormField
+                            control={volunteerForm.control}
+                            name="lastName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Last Name</FormLabel>
+                                <FormControl>
+                                  <input 
+                                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                    placeholder="Your last name"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={volunteerForm.control}
-                    name="interest"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Area of Interest</FormLabel>
-                        <FormControl>
-                          <select 
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                            {...field}
-                          >
-                            <option value="">Select an option</option>
-                            <option value="education">Educational Support</option>
-                            <option value="skill">Skill Development</option>
-                            <option value="event">Event Support</option>
-                            <option value="other">Other</option>
-                          </select>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={volunteerForm.control}
-                    name="skills"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Skills & Experience</FormLabel>
-                        <FormControl>
-                          <textarea 
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green min-h-[100px]"
-                            placeholder="Tell us about relevant skills and experience you can contribute"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={volunteerForm.control}
-                    name="availability"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Availability</FormLabel>
-                        <FormControl>
-                          <textarea 
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green min-h-[100px]"
-                            placeholder="Please share your general availability (days/times)"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormTermsAndCaptcha control={volunteerForm.control} />
-                  
-                  <button 
-                    type="submit" 
-                    className="w-full bg-primary-green text-white font-medium py-3 rounded-md hover:bg-primary-green/90 transition-colors mt-6"
-                  >
-                    Submit Application
-                  </button>
-                </form>
-              </Form>
+                        </div>
+                        
+                        <FormField
+                          control={volunteerForm.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email Address</FormLabel>
+                              <FormControl>
+                                <input 
+                                  type="email"
+                                  placeholder="your.email@example.com"
+                                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={volunteerForm.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Phone Number</FormLabel>
+                              <FormControl>
+                                <input 
+                                  type="tel"
+                                  placeholder="+91 98765 43210"
+                                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={volunteerForm.control}
+                          name="interest"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Area of Interest</FormLabel>
+                              <FormControl>
+                                <select 
+                                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                  {...field}
+                                >
+                                  <option value="">Select an option</option>
+                                  <option value="education">Educational Support</option>
+                                  <option value="skill">Skill Development</option>
+                                  <option value="event">Event Support</option>
+                                  <option value="other">Other</option>
+                                </select>
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={volunteerForm.control}
+                          name="skills"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Skills & Experience</FormLabel>
+                              <FormControl>
+                                <textarea 
+                                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green min-h-[100px]"
+                                  placeholder="Tell us about relevant skills and experience you can contribute"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={volunteerForm.control}
+                          name="availability"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Availability</FormLabel>
+                              <FormControl>
+                                <textarea 
+                                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green min-h-[80px]"
+                                  placeholder="Please share your general availability (days/times)"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormTermsAndCaptcha control={volunteerForm.control} />
+                        
+                        <button 
+                          type="submit" 
+                          className="w-full bg-primary-green text-white font-medium py-3 rounded-md hover:bg-primary-green/90 transition-colors mt-6 flex items-center justify-center"
+                        >
+                          <span>Submit Application</span>
+                        </button>
+                      </form>
+                    </Form>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
