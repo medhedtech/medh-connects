@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DonationModal from "@/components/DonationModal";
@@ -108,8 +109,8 @@ const GetInvolved = () => {
         
         <section id="donate" className="py-16 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              <div className="flex flex-col h-full">
                 <span className="bg-primary-green/10 text-primary-green px-4 py-1 rounded-full text-sm font-medium">Support Our Cause</span>
                 <h2 className="mt-4 text-3xl font-bold mb-6">Donate</h2>
                 <p className="text-gray-700 mb-4">
@@ -119,7 +120,7 @@ const GetInvolved = () => {
                   We ensure transparency in how we utilize funds, with regular updates to our donors about the impact of their contributions.
                 </p>
                 
-                <div className="bg-white shadow-lg rounded-xl p-6 border border-gray-100">
+                <div className="bg-white shadow-lg rounded-xl p-6 border border-gray-100 flex-grow">
                   <h3 className="text-xl font-bold mb-4">Donation Options</h3>
                   <div className="space-y-4">
                     <div className="flex items-center p-4 border border-gray-200 rounded-lg hover:border-primary-green transition-colors">
@@ -159,7 +160,7 @@ const GetInvolved = () => {
                   
                   <div className="mt-6">
                     <h4 className="font-medium mb-3">Select Amount:</h4>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-2 gap-3">
                       <button 
                         className={`${selectedAmount === "1000" ? "bg-primary-green text-white" : "bg-gray-100"} hover:bg-primary-green hover:text-white transition-colors py-2 rounded-md font-medium`}
                         onClick={() => handleAmountSelect("1000")}
@@ -178,13 +179,19 @@ const GetInvolved = () => {
                       >
                         ₹10,000
                       </button>
+                      <button 
+                        className={`${selectedAmount === "50000" ? "bg-primary-green text-white" : "bg-gray-100"} hover:bg-primary-green hover:text-white transition-colors py-2 rounded-md font-medium`}
+                        onClick={() => handleAmountSelect("50000")}
+                      >
+                        ₹50,000
+                      </button>
                     </div>
                     <div className="mt-3">
                       <input 
                         type="text" 
                         placeholder="Custom Amount" 
                         className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                        value={!["1000", "5000", "10000"].includes(selectedAmount) ? selectedAmount : ""}
+                        value={!["1000", "5000", "10000", "50000"].includes(selectedAmount) ? selectedAmount : ""}
                         onChange={handleCustomAmount}
                       />
                     </div>
@@ -199,8 +206,8 @@ const GetInvolved = () => {
                 </div>
               </div>
               
-              <div className="space-y-6">
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="space-y-6 h-full flex flex-col">
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden flex-grow">
                   <div className="p-6 bg-secondary-orange text-white">
                     <h3 className="text-xl font-bold mb-2">Impact of Your Donation</h3>
                     <p>See how your contribution makes a difference</p>
@@ -261,7 +268,7 @@ const GetInvolved = () => {
                       <div className="grid md:grid-cols-3">
                         <div className="md:col-span-1 h-40">
                           <img 
-                            src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                            src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
                             alt="Community workshop" 
                             className="h-full w-full object-cover"
                           />
@@ -307,22 +314,22 @@ const GetInvolved = () => {
                       </div>
                     </Card>
                   </div>
-                  
-                  <div className="px-6 pb-6">
-                    <div className="p-5 bg-primary-green/10 rounded-lg border border-primary-green/30 shadow-sm">
-                      <div className="flex items-start">
-                        <Heart className="w-5 h-5 text-primary-green mr-2 mt-0.5 flex-shrink-0" />
-                        <p className="text-gray-800 font-medium">
-                          All donations are tax-deductible under Section 80G of the Income Tax Act. You will receive an official receipt for your contribution.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-8 pb-8">
+          <div className="p-5 bg-primary-green/10 rounded-lg border border-primary-green/30 shadow-sm text-center">
+            <div className="flex items-center justify-center">
+              <Heart className="w-5 h-5 text-primary-green mr-2 flex-shrink-0" />
+              <p className="text-gray-800 font-medium">
+                All donations are tax-deductible under Section 80G of the Income Tax Act. You will receive an official receipt for your contribution.
+              </p>
+            </div>
+          </div>
+        </div>
         
         <section id="corporate" className="py-16 px-4 md:px-8 bg-gradient-to-r from-secondary-orange/5 to-primary-green/5">
           <div className="max-w-7xl mx-auto">
