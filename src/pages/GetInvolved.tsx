@@ -1,7 +1,6 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Heart, Clock, Users, Building, Calendar } from "lucide-react";
+import { Heart, Clock, Users, Building, Calendar, Globe, ChevronRight, DollarSign, Handshake, Trophy, CheckCircle, BarChart3 } from "lucide-react";
 import { useEffect } from "react";
 
 const GetInvolved = () => {
@@ -317,83 +316,247 @@ const GetInvolved = () => {
           </div>
         </section>
         
-        <section id="corporate" className="py-16 px-4 md:px-8">
+        <section id="corporate" className="py-16 px-4 md:px-8 bg-gradient-to-r from-secondary-orange/5 to-primary-green/5">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="bg-secondary-orange/10 text-secondary-orange px-4 py-1 rounded-full text-sm font-medium">For Organizations</span>
-                <h2 className="mt-4 text-3xl font-bold mb-6">Corporate Partnerships</h2>
-                <p className="text-gray-700 mb-4">
-                  Partner with us to fulfill your corporate social responsibility goals while making a meaningful impact in education and empowerment.
+            <div className="text-center mb-12">
+              <span className="bg-secondary-orange/10 text-secondary-orange px-4 py-1 rounded-full text-sm font-medium">Corporate Social Responsibility</span>
+              <h2 className="mt-4 text-3xl md:text-4xl font-bold">Partner With Us for Impactful CSR</h2>
+              <p className="mt-4 text-gray-700 max-w-3xl mx-auto">
+                Join our mission to empower underprivileged children and single mothers through meaningful corporate partnerships that align with your organization's values and CSR objectives.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border-t-4 border-primary-green">
+                <div className="h-12 w-12 bg-primary-green/10 rounded-full flex items-center justify-center mb-4">
+                  <Trophy className="text-primary-green w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Strategic Impact</h3>
+                <p className="text-gray-600 mb-4">
+                  Create a lasting positive impact aligned with UN Sustainable Development Goals 4 (Quality Education) and 5 (Gender Equality).
                 </p>
-                <p className="text-gray-700 mb-6">
-                  We offer various partnership opportunities tailored to your organization's interests, resources, and social impact objectives.
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-primary-green mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Measurable social outcomes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-primary-green mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Regular impact reports</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-primary-green mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Transparent fund utilization</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border-t-4 border-secondary-orange">
+                <div className="h-12 w-12 bg-secondary-orange/10 rounded-full flex items-center justify-center mb-4">
+                  <Handshake className="text-secondary-orange w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Brand Alignment</h3>
+                <p className="text-gray-600 mb-4">
+                  Enhance your brand's reputation by associating with our mission of education and women's empowerment.
                 </p>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3 mt-1">
-                      <Building className="w-5 h-5" />
-                    </span>
-                    <div>
-                      <h4 className="font-bold">Program Sponsorship</h4>
-                      <p className="text-gray-600 text-sm">
-                        Fund specific educational or skill development programs aligned with your corporate values.
-                      </p>
-                    </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-secondary-orange mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Brand visibility in campaigns</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-secondary-orange mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Co-created success stories</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-secondary-orange mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Partnership acknowledgment</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border-t-4 border-accent-green">
+                <div className="h-12 w-12 bg-accent-green/10 rounded-full flex items-center justify-center mb-4">
+                  <Globe className="text-accent-green w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Employee Engagement</h3>
+                <p className="text-gray-600 mb-4">
+                  Provide meaningful volunteering opportunities for your employees to contribute directly to our programs.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-accent-green mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Skills-based volunteering</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-accent-green mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Team-building activities</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-accent-green mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Mentorship programs</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="mb-16">
+              <h3 className="text-2xl font-semibold mb-8 text-center">CSR Partnership Models</h3>
+              <div className="grid md:grid-cols-2 gap-12">
+                <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                  <div className="bg-primary-green text-white p-6">
+                    <h4 className="text-xl font-bold flex items-center">
+                      <DollarSign className="mr-2 h-6 w-6" />
+                      Financial Support
+                    </h4>
                   </div>
-                  <div className="flex items-start">
-                    <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3 mt-1">
-                      <Building className="w-5 h-5" />
-                    </span>
-                    <div>
-                      <h4 className="font-bold">Employee Volunteering</h4>
-                      <p className="text-gray-600 text-sm">
-                        Engage your employees in meaningful volunteer experiences that build team spirit while serving the community.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3 mt-1">
-                      <Building className="w-5 h-5" />
-                    </span>
-                    <div>
-                      <h4 className="font-bold">Resource Sharing</h4>
-                      <p className="text-gray-600 text-sm">
-                        Contribute technology, infrastructure, or expertise to enhance our programs and operational capacity.
-                      </p>
+                  <div className="p-6">
+                    <p className="text-gray-700 mb-6">
+                      Direct funding to support our education and skill development programs, with options for specific initiatives or general support.
+                    </p>
+                    <div className="space-y-4">
+                      <div className="flex items-start">
+                        <div className="bg-primary-green/10 rounded-full p-2 mr-3 mt-1">
+                          <Building className="h-5 w-5 text-primary-green" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold">Program Sponsorship</h5>
+                          <p className="text-sm text-gray-600">Fund specific educational or upskilling programs</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="bg-primary-green/10 rounded-full p-2 mr-3 mt-1">
+                          <BarChart3 className="h-5 w-5 text-primary-green" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold">Capital Projects</h5>
+                          <p className="text-sm text-gray-600">Support infrastructure development and equipment needs</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="bg-primary-green/10 rounded-full p-2 mr-3 mt-1">
+                          <Users className="h-5 w-5 text-primary-green" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold">Scholarship Funds</h5>
+                          <p className="text-sm text-gray-600">Create named scholarships for deserving students</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="mt-8">
+                <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                  <div className="bg-secondary-orange text-white p-6">
+                    <h4 className="text-xl font-bold flex items-center">
+                      <Handshake className="mr-2 h-6 w-6" />
+                      Strategic Partnerships
+                    </h4>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-gray-700 mb-6">
+                      Collaborative initiatives that leverage your company's expertise, resources, and networks to amplify our impact.
+                    </p>
+                    <div className="space-y-4">
+                      <div className="flex items-start">
+                        <div className="bg-secondary-orange/10 rounded-full p-2 mr-3 mt-1">
+                          <Globe className="h-5 w-5 text-secondary-orange" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold">Knowledge Transfer</h5>
+                          <p className="text-sm text-gray-600">Share industry expertise with our beneficiaries</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="bg-secondary-orange/10 rounded-full p-2 mr-3 mt-1">
+                          <Building className="h-5 w-5 text-secondary-orange" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold">Cause-related Marketing</h5>
+                          <p className="text-sm text-gray-600">Joint campaigns that benefit both partners</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start">
+                        <div className="bg-secondary-orange/10 rounded-full p-2 mr-3 mt-1">
+                          <Trophy className="h-5 w-5 text-secondary-orange" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold">Product/Service Donations</h5>
+                          <p className="text-sm text-gray-600">Provide your products or services to support our work</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+              <div className="p-6 md:p-8 border-b">
+                <h3 className="text-2xl font-semibold">How Your CSR Aligns With Our Mission</h3>
+                <p className="text-gray-600 mt-2">
+                  Our programs are designed to create sustainable impact in education and empowerment, 
+                  perfectly aligning with corporate social responsibility goals.
+                </p>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x">
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-2 text-primary-green">Education Access</h4>
+                  <p className="text-gray-600 text-sm">
+                    Support programs that provide quality education to underserved children, addressing inequality.
+                  </p>
+                </div>
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-2 text-primary-green">Women's Empowerment</h4>
+                  <p className="text-gray-600 text-sm">
+                    Contribute to economic independence for single mothers through skill development.
+                  </p>
+                </div>
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-2 text-primary-green">Community Development</h4>
+                  <p className="text-gray-600 text-sm">
+                    Help build stronger communities through family support and social integration programs.
+                  </p>
+                </div>
+                <div className="p-6">
+                  <h4 className="font-semibold text-lg mb-2 text-primary-green">Sustainable Impact</h4>
+                  <p className="text-gray-600 text-sm">
+                    Create long-term positive change through systematic, measured approaches to social problems.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex flex-col md:flex-row bg-gradient-to-r from-secondary-orange/20 to-primary-green/20 rounded-xl overflow-hidden">
+              <div className="md:w-3/5 p-8 md:p-10">
+                <h3 className="text-2xl font-bold mb-4">Ready to make a difference?</h3>
+                <p className="mb-6 text-gray-700">
+                  Our team is ready to work with you to create a tailored CSR partnership that aligns with your corporate values and maximizes social impact.
+                </p>
+                <div className="space-y-4">
                   <a 
-                    href="mailto:partnerships@medhfoundation.org" 
-                    className="btn-secondary"
+                    href="mailto:corporate@medhfoundation.org" 
+                    className="inline-flex items-center bg-primary-green text-white px-6 py-3 rounded-md hover:bg-primary-green/90 transition-all font-medium"
                   >
-                    Contact Our Partnership Team
+                    Schedule a Consultation
+                    <ChevronRight className="ml-2 h-5 w-5" />
+                  </a>
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center bg-white text-primary-green border border-primary-green px-6 py-3 rounded-md hover:bg-primary-green/10 transition-all font-medium ml-0 md:ml-4 mt-4 md:mt-0"
+                  >
+                    Download CSR Brochure
+                    <ChevronRight className="ml-2 h-5 w-5" />
                   </a>
                 </div>
               </div>
-              
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
-                  alt="Corporate partnership"
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-4">Partner Testimonial</h3>
-                  <blockquote className="italic text-gray-600 mb-4">
-                    "Our partnership with the Medh Foundation has been incredibly rewarding. Not only have we been able to contribute to meaningful social change, but our employees have also gained valuable perspective and purpose through volunteering opportunities."
-                  </blockquote>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gray-200 rounded-full mr-3"></div>
-                    <div>
-                      <p className="font-bold">Partner Name</p>
-                      <p className="text-sm text-gray-600">Position, Company</p>
-                    </div>
-                  </div>
+              <div className="md:w-2/5 bg-gray-200">
+                <div className="h-full flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                    alt="Corporate partnership meeting" 
+                    className="h-full w-full object-cover"
+                  />
                 </div>
               </div>
             </div>
