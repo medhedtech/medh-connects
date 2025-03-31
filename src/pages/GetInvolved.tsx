@@ -1,9 +1,66 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Heart, Clock, Users, Building, Calendar, Globe, ChevronRight, DollarSign, Handshake, Trophy, CheckCircle, BarChart3 } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import FormTermsAndCaptcha from "@/components/FormTermsAndCaptcha";
+import CSRConsultationForm from "@/components/CSRConsultationForm";
+import { useToast } from "@/hooks/use-toast";
+
+const volunteerFormSchema = z.object({
+  firstName: z.string().min(2, {
+    message: "First name must be at least 2 characters.",
+  }),
+  lastName: z.string().min(2, {
+    message: "Last name must be at least 2 characters.",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  phone: z.string().min(10, {
+    message: "Please enter a valid phone number.",
+  }),
+  interest: z.string().min(1, {
+    message: "Please select an area of interest.",
+  }),
+  skills: z.string().optional(),
+  availability: z.string().optional(),
+  termsAccepted: z.literal(true, {
+    errorMap: () => ({ message: "You must accept the terms and privacy policy" }),
+  }),
+});
 
 const GetInvolved = () => {
+  const [showCSRForm, setShowCSRForm] = useState(false);
+  const { toast } = useToast();
+  
+  const volunteerForm = useForm<z.infer<typeof volunteerFormSchema>>({
+    resolver: zodResolver(volunteerFormSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      interest: "",
+      skills: "",
+      availability: "",
+      termsAccepted: false,
+    },
+  });
+
+  function onVolunteerSubmit(values: z.infer<typeof volunteerFormSchema>) {
+    console.log(values);
+    toast({
+      title: "Application Submitted Successfully",
+      description: "Thank you for your interest in volunteering with us. We'll be in touch soon!",
+    });
+    volunteerForm.reset();
+  }
+
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
@@ -137,181 +194,6 @@ const GetInvolved = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-        
-        <section id="volunteer" className="py-16 px-4 md:px-8 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Join Our Team</span>
-              <h2 className="mt-4 text-3xl font-bold">Volunteer Opportunities</h2>
-              <p className="mt-4 text-gray-700 max-w-3xl mx-auto">
-                Share your time, skills, and passion to make a meaningful difference in the lives of children and single mothers.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-6">
-                <div className="h-12 w-12 bg-primary-green/10 rounded-full flex items-center justify-center mb-4">
-                  <Users className="text-primary-green w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Educational Support</h3>
-                <p className="text-gray-600 mb-4">
-                  Assist in teaching, tutoring, and organizing educational activities for children in our programs.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-2 text-primary-green" />
-                    <span>Minimum 4 hours per week</span>
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Calendar className="w-4 h-4 mr-2 text-primary-green" />
-                    <span>Weekday afternoons or weekends</span>
-                  </li>
-                </ul>
-                <a 
-                  href="#volunteer-form" 
-                  className="inline-block text-primary-green hover:text-primary-green/80 font-medium transition-colors"
-                >
-                  Apply Now
-                </a>
-              </div>
-              
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-6">
-                <div className="h-12 w-12 bg-secondary-orange/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-secondary-orange w-6 h-6">
-                    <path d="M12 3v12"></path>
-                    <path d="m8 11 4 4 4-4"></path>
-                    <path d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-                    <path d="M20 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-                    <path d="M8 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-                    <path d="M20 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-                    <path d="M6 5h12"></path>
-                    <path d="M6 19h12"></path>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold mb-3">Skill Development</h3>
-                <p className="text-gray-600 mb-4">
-                  Share your professional expertise to train single mothers in various vocational and business skills.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-2 text-secondary-orange" />
-                    <span>Flexible hours based on program schedule</span>
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Calendar className="w-4 h-4 mr-2 text-secondary-orange" />
-                    <span>Short-term or ongoing commitment</span>
-                  </li>
-                </ul>
-                <a 
-                  href="#volunteer-form" 
-                  className="inline-block text-secondary-orange hover:text-secondary-orange/80 font-medium transition-colors"
-                >
-                  Apply Now
-                </a>
-              </div>
-              
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-6">
-                <div className="h-12 w-12 bg-accent-green/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-green w-6 h-6">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" x2="12" y1="8" y2="16"></line>
-                    <line x1="8" x2="16" y1="12" y2="12"></line>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold mb-3">Event Support</h3>
-                <p className="text-gray-600 mb-4">
-                  Help organize and manage community events, fundraisers, and awareness campaigns.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-2 text-accent-green" />
-                    <span>As needed for scheduled events</span>
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <Calendar className="w-4 h-4 mr-2 text-accent-green" />
-                    <span>Weekend availability preferred</span>
-                  </li>
-                </ul>
-                <a 
-                  href="#volunteer-form" 
-                  className="inline-block text-accent-green hover:text-accent-green/80 font-medium transition-colors"
-                >
-                  Apply Now
-                </a>
-              </div>
-            </div>
-            
-            <div id="volunteer-form" className="mt-12 bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
-              <h3 className="text-xl font-bold mb-6">Volunteer Application Form</h3>
-              <form className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-gray-700 mb-2">First Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 mb-2">Last Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Email Address</label>
-                  <input 
-                    type="email" 
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Phone Number</label>
-                  <input 
-                    type="tel" 
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Area of Interest</label>
-                  <select className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green">
-                    <option value="">Select an option</option>
-                    <option value="education">Educational Support</option>
-                    <option value="skill">Skill Development</option>
-                    <option value="event">Event Support</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Skills & Experience</label>
-                  <textarea 
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green min-h-[100px]"
-                    placeholder="Tell us about relevant skills and experience you can contribute"
-                  ></textarea>
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Availability</label>
-                  <textarea 
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green min-h-[100px]"
-                    placeholder="Please share your general availability (days/times)"
-                  ></textarea>
-                </div>
-                <button 
-                  type="submit" 
-                  className="w-full bg-primary-green text-white font-medium py-3 rounded-md hover:bg-primary-green/90 transition-colors"
-                >
-                  Submit Application
-                </button>
-              </form>
             </div>
           </div>
         </section>
@@ -534,20 +416,13 @@ const GetInvolved = () => {
                   Our team is ready to work with you to create a tailored CSR partnership that aligns with your corporate values and maximizes social impact.
                 </p>
                 <div className="space-y-4">
-                  <a 
-                    href="mailto:corporate@medhfoundation.org" 
+                  <button 
+                    onClick={() => setShowCSRForm(true)}
                     className="inline-flex items-center bg-primary-green text-white px-6 py-3 rounded-md hover:bg-primary-green/90 transition-all font-medium"
                   >
                     Schedule a Consultation
                     <ChevronRight className="ml-2 h-5 w-5" />
-                  </a>
-                  <a 
-                    href="#" 
-                    className="inline-flex items-center bg-white text-primary-green border border-primary-green px-6 py-3 rounded-md hover:bg-primary-green/10 transition-all font-medium ml-0 md:ml-4 mt-4 md:mt-0"
-                  >
-                    Download CSR Brochure
-                    <ChevronRight className="ml-2 h-5 w-5" />
-                  </a>
+                  </button>
                 </div>
               </div>
               <div className="md:w-2/5 bg-gray-200">
@@ -562,8 +437,261 @@ const GetInvolved = () => {
             </div>
           </div>
         </section>
+
+        <section id="volunteer" className="py-16 px-4 md:px-8 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Join Our Team</span>
+              <h2 className="mt-4 text-3xl font-bold">Volunteer Opportunities</h2>
+              <p className="mt-4 text-gray-700 max-w-3xl mx-auto">
+                Share your time, skills, and passion to make a meaningful difference in the lives of children and single mothers.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-6">
+                <div className="h-12 w-12 bg-primary-green/10 rounded-full flex items-center justify-center mb-4">
+                  <Users className="text-primary-green w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Educational Support</h3>
+                <p className="text-gray-600 mb-4">
+                  Assist in teaching, tutoring, and organizing educational activities for children in our programs.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm text-gray-600">
+                    <Clock className="w-4 h-4 mr-2 text-primary-green" />
+                    <span>Minimum 4 hours per week</span>
+                  </li>
+                  <li className="flex items-center text-sm text-gray-600">
+                    <Calendar className="w-4 h-4 mr-2 text-primary-green" />
+                    <span>Weekday afternoons or weekends</span>
+                  </li>
+                </ul>
+                <a 
+                  href="#volunteer-form" 
+                  className="inline-block text-primary-green hover:text-primary-green/80 font-medium transition-colors"
+                >
+                  Apply Now
+                </a>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-6">
+                <div className="h-12 w-12 bg-secondary-orange/10 rounded-full flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-secondary-orange w-6 h-6">
+                    <path d="M12 3v12"></path>
+                    <path d="m8 11 4 4 4-4"></path>
+                    <path d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
+                    <path d="M20 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
+                    <path d="M8 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
+                    <path d="M20 19a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
+                    <path d="M6 5h12"></path>
+                    <path d="M6 19h12"></path>
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Skill Development</h3>
+                <p className="text-gray-600 mb-4">
+                  Share your professional expertise to train single mothers in various vocational and business skills.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm text-gray-600">
+                    <Clock className="w-4 h-4 mr-2 text-secondary-orange" />
+                    <span>Flexible hours based on program schedule</span>
+                  </li>
+                  <li className="flex items-center text-sm text-gray-600">
+                    <Calendar className="w-4 h-4 mr-2 text-secondary-orange" />
+                    <span>Short-term or ongoing commitment</span>
+                  </li>
+                </ul>
+                <a 
+                  href="#volunteer-form" 
+                  className="inline-block text-secondary-orange hover:text-secondary-orange/80 font-medium transition-colors"
+                >
+                  Apply Now
+                </a>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all p-6">
+                <div className="h-12 w-12 bg-accent-green/10 rounded-full flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-green w-6 h-6">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" x2="12" y1="8" y2="16"></line>
+                    <line x1="8" x2="16" y1="12" y2="12"></line>
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Event Support</h3>
+                <p className="text-gray-600 mb-4">
+                  Help organize and manage community events, fundraisers, and awareness campaigns.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center text-sm text-gray-600">
+                    <Clock className="w-4 h-4 mr-2 text-accent-green" />
+                    <span>As needed for scheduled events</span>
+                  </li>
+                  <li className="flex items-center text-sm text-gray-600">
+                    <Calendar className="w-4 h-4 mr-2 text-accent-green" />
+                    <span>Weekend availability preferred</span>
+                  </li>
+                </ul>
+                <a 
+                  href="#volunteer-form" 
+                  className="inline-block text-accent-green hover:text-accent-green/80 font-medium transition-colors"
+                >
+                  Apply Now
+                </a>
+              </div>
+            </div>
+            
+            <div id="volunteer-form" className="mt-12 bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
+              <h3 className="text-xl font-bold mb-6">Volunteer Application Form</h3>
+              <Form {...volunteerForm}>
+                <form onSubmit={volunteerForm.handleSubmit(onVolunteerSubmit)} className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <FormField
+                      control={volunteerForm.control}
+                      name="firstName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>First Name</FormLabel>
+                          <FormControl>
+                            <input 
+                              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <FormField
+                      control={volunteerForm.control}
+                      name="lastName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Last Name</FormLabel>
+                          <FormControl>
+                            <input 
+                              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  
+                  <FormField
+                    control={volunteerForm.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email Address</FormLabel>
+                        <FormControl>
+                          <input 
+                            type="email"
+                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={volunteerForm.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone Number</FormLabel>
+                        <FormControl>
+                          <input 
+                            type="tel"
+                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={volunteerForm.control}
+                    name="interest"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Area of Interest</FormLabel>
+                        <FormControl>
+                          <select 
+                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                            {...field}
+                          >
+                            <option value="">Select an option</option>
+                            <option value="education">Educational Support</option>
+                            <option value="skill">Skill Development</option>
+                            <option value="event">Event Support</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={volunteerForm.control}
+                    name="skills"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Skills & Experience</FormLabel>
+                        <FormControl>
+                          <textarea 
+                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green min-h-[100px]"
+                            placeholder="Tell us about relevant skills and experience you can contribute"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={volunteerForm.control}
+                    name="availability"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Availability</FormLabel>
+                        <FormControl>
+                          <textarea 
+                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green min-h-[100px]"
+                            placeholder="Please share your general availability (days/times)"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormTermsAndCaptcha control={volunteerForm.control} />
+                  
+                  <button 
+                    type="submit" 
+                    className="w-full bg-primary-green text-white font-medium py-3 rounded-md hover:bg-primary-green/90 transition-colors mt-6"
+                  >
+                    Submit Application
+                  </button>
+                </form>
+              </Form>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
+      {showCSRForm && <CSRConsultationForm onClose={() => setShowCSRForm(false)} />}
     </div>
   );
 };
