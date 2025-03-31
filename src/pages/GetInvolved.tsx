@@ -11,6 +11,7 @@ import FormTermsAndCaptcha from "@/components/FormTermsAndCaptcha";
 import CSRConsultationForm from "@/components/CSRConsultationForm";
 import { useToast } from "@/hooks/use-toast";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 const volunteerFormSchema = z.object({
   firstName: z.string().min(2, {
@@ -198,53 +199,117 @@ const GetInvolved = () => {
                 </div>
               </div>
               
-              <div>
+              <div className="space-y-6">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <div className="p-6 bg-secondary-orange text-white">
                     <h3 className="text-xl font-bold mb-2">Impact of Your Donation</h3>
                     <p>See how your contribution makes a difference</p>
                   </div>
-                  <div className="p-6">
-                    <ul className="space-y-4">
-                      <li className="flex items-start">
-                        <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3">
-                          <Heart className="w-5 h-5" />
-                        </span>
-                        <div>
-                          <p className="font-medium">₹1,000</p>
-                          <p className="text-gray-600 text-sm">Provides educational materials for one child for a month</p>
+                  
+                  <div className="grid grid-cols-1 gap-4 p-6">
+                    <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-all">
+                      <div className="grid md:grid-cols-3">
+                        <div className="md:col-span-1">
+                          <img 
+                            src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                            alt="Child with educational materials" 
+                            className="h-full w-full object-cover"
+                          />
                         </div>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3">
-                          <Heart className="w-5 h-5" />
-                        </span>
-                        <div>
-                          <p className="font-medium">₹5,000</p>
-                          <p className="text-gray-600 text-sm">Sponsors vocational training for one single mother</p>
+                        <div className="p-4 md:col-span-2 flex items-center">
+                          <div>
+                            <div className="flex items-start">
+                              <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3">
+                                <Heart className="w-5 h-5" />
+                              </span>
+                              <div>
+                                <p className="font-medium">₹1,000</p>
+                                <p className="text-gray-600 text-sm">Provides educational materials for one child for a month</p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3">
-                          <Heart className="w-5 h-5" />
-                        </span>
-                        <div>
-                          <p className="font-medium">₹10,000</p>
-                          <p className="text-gray-600 text-sm">Funds a community development workshop for 20 participants</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3">
-                          <Heart className="w-5 h-5" />
-                        </span>
-                        <div>
-                          <p className="font-medium">₹50,000</p>
-                          <p className="text-gray-600 text-sm">Establishes a micro-enterprise for a group of five single mothers</p>
-                        </div>
-                      </li>
-                    </ul>
+                      </div>
+                    </Card>
                     
-                    <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                    <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-all">
+                      <div className="grid md:grid-cols-3">
+                        <div className="md:col-span-1">
+                          <img 
+                            src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                            alt="Vocational training session" 
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                        <div className="p-4 md:col-span-2 flex items-center">
+                          <div>
+                            <div className="flex items-start">
+                              <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3">
+                                <Heart className="w-5 h-5" />
+                              </span>
+                              <div>
+                                <p className="font-medium">₹5,000</p>
+                                <p className="text-gray-600 text-sm">Sponsors vocational training for one single mother</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                    
+                    <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-all">
+                      <div className="grid md:grid-cols-3">
+                        <div className="md:col-span-1">
+                          <img 
+                            src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                            alt="Community workshop" 
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                        <div className="p-4 md:col-span-2 flex items-center">
+                          <div>
+                            <div className="flex items-start">
+                              <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3">
+                                <Heart className="w-5 h-5" />
+                              </span>
+                              <div>
+                                <p className="font-medium">₹10,000</p>
+                                <p className="text-gray-600 text-sm">Funds a community development workshop for 20 participants</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                    
+                    <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-all">
+                      <div className="grid md:grid-cols-3">
+                        <div className="md:col-span-1">
+                          <img 
+                            src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                            alt="Micro-enterprise group" 
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                        <div className="p-4 md:col-span-2 flex items-center">
+                          <div>
+                            <div className="flex items-start">
+                              <span className="bg-secondary-orange/10 text-secondary-orange p-2 rounded-full mr-3">
+                                <Heart className="w-5 h-5" />
+                              </span>
+                              <div>
+                                <p className="font-medium">₹50,000</p>
+                                <p className="text-gray-600 text-sm">Establishes a micro-enterprise for a group of five single mothers</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                  
+                  <div className="px-6 pb-6">
+                    <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
                       <p className="text-sm text-gray-600">
                         All donations are tax-deductible under Section 80G of the Income Tax Act. You will receive an official receipt for your contribution.
                       </p>
@@ -486,7 +551,7 @@ const GetInvolved = () => {
               <div className="md:w-2/5 bg-gray-200">
                 <div className="h-full flex items-center justify-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                    src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
                     alt="Corporate partnership meeting" 
                     className="h-full w-full object-cover"
                   />
