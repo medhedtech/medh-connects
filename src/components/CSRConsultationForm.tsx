@@ -46,7 +46,8 @@ export default function CSRConsultationForm({ onClose }: CSRConsultationFormProp
       phone: "",
       interestArea: "",
       message: "",
-      termsAccepted: false,
+      // Don't initialize termsAccepted with a default value
+      // since it conflicts with the z.literal(true) schema
     },
   });
 

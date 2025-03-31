@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Heart, Clock, Users, Building, Calendar, Globe, ChevronRight, DollarSign, Handshake, Trophy, CheckCircle, BarChart3 } from "lucide-react";
@@ -48,7 +47,6 @@ const GetInvolved = () => {
       interest: "",
       skills: "",
       availability: "",
-      termsAccepted: false,
     },
   });
 

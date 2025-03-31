@@ -12,6 +12,7 @@ interface FormTermsAndCaptchaProps {
 const FormTermsAndCaptcha = ({ control }: FormTermsAndCaptchaProps) => {
   const [captchaValue, setCaptchaValue] = useState<string>(generateCaptcha());
   const [userCaptcha, setUserCaptcha] = useState<string>("");
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
 
   function generateCaptcha() {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -20,6 +21,16 @@ const FormTermsAndCaptcha = ({ control }: FormTermsAndCaptchaProps) => {
   const refreshCaptcha = () => {
     setCaptchaValue(generateCaptcha());
     setUserCaptcha("");
+    setCaptchaError(null);
+  };
+
+  const validateCaptcha = () => {
+    if (userCaptcha !== captchaValue) {
+      setCaptchaError("Please enter the correct CAPTCHA code");
+      return false;
+    }
+    setCaptchaError(null);
+    return true;
   };
 
   return (
@@ -43,11 +54,17 @@ const FormTermsAndCaptcha = ({ control }: FormTermsAndCaptchaProps) => {
           id="captcha"
           type="text" 
           value={userCaptcha}
-          onChange={(e) => setUserCaptcha(e.target.value)}
+          onChange={(e) => {
+            setUserCaptcha(e.target.value);
+            if (captchaError) setCaptchaError(null);
+          }}
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green mt-2"
           placeholder="Enter the code above"
           required
         />
+        {captchaError && (
+          <p className="text-sm font-medium text-red-500 mt-1">{captchaError}</p>
+        )}
       </div>
 
       {/* Terms acceptance */}
