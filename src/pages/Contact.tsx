@@ -1,7 +1,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Mail, MapPin, Phone, Users, Calendar, FileText, CreditCard } from "lucide-react";
+import { Mail, MapPin, Phone, Users, Calendar, FileText, CreditCard, HelpCircle, Search, Filter } from "lucide-react";
 import { useState, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -35,6 +35,9 @@ const contactFormSchema = z.object({
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [isSearching, setIsSearching] = useState(false);
 
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
@@ -66,6 +69,22 @@ const Contact = () => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, []);
+
+  // Animation for search transitions
+  useEffect(() => {
+    setIsSearching(!!searchQuery);
+  }, [searchQuery]);
+
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    toast({
+      title: `Viewing ${category} FAQs`,
+      description: category === "All" ? "Showing most relevant FAQs from each category" : `Showing all ${category} questions`,
+    });
+  };
+
+  // Categories for FAQs
+  const categories = ["All", "Donations", "Financial Support", "Volunteering", "Programs"];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -298,55 +317,137 @@ const Contact = () => {
               </div>
             </div>
             
-            {/* FAQs Section */}
-            <section id="faq" className="py-16 px-4 md:px-8">
+            {/* FAQs Section - Enhanced */}
+            <section id="faq" className="py-16 px-4 md:px-8 bg-gradient-to-b from-white to-accent-green/5 rounded-3xl mt-16">
               <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-12">
-                  <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Got Questions?</span>
+                  <div className="flex items-center justify-center mb-4">
+                    <HelpCircle className="text-accent-green h-10 w-10 mr-3" />
+                    <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Got Questions?</span>
+                  </div>
                   <h2 className="mt-4 text-3xl font-bold">Frequently Asked Questions</h2>
                   <p className="mt-4 text-gray-700 max-w-3xl mx-auto">
                     Find comprehensive answers to common questions about our programs, financial support process, and ways to contribute. Whether you're seeking assistance or looking to make a difference, we're here to help.
                   </p>
                 </div>
+
+                {/* Visual banner/image */}
+                <div className="relative rounded-xl overflow-hidden mb-10 shadow-xl">
+                  <img 
+                    src="/public/lovable-uploads/1994e886-9ac1-4d3b-b674-24257faab00f.png" 
+                    alt="People discussing questions and answers" 
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8">
+                    <p className="text-white text-lg font-medium drop-shadow-md max-w-md text-center px-4">
+                      Our team is dedicated to answering your questions and helping you navigate our resources
+                    </p>
+                  </div>
+                </div>
                 
-                <div className="max-w-3xl mx-auto">
+                {/* Search and filter */}
+                <div className="mb-10 space-y-6">
+                  <div className="relative transition-all duration-300 transform hover:scale-[1.01]">
+                    <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${isSearching ? 'text-primary-green' : 'text-gray-400'} h-5 w-5 transition-colors`} />
+                    <input
+                      type="text"
+                      placeholder="Search FAQs..."
+                      className="w-full pl-10 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green shadow-md focus:shadow-lg transition-all duration-300"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-3 justify-center">
+                    <div className="flex items-center mr-2">
+                      <Filter className="h-4 w-4 text-gray-500 mr-1" />
+                      <span className="text-sm text-gray-500">Filter:</span>
+                    </div>
+                    
+                    {categories.map((category) => (
+                      <button
+                        key={category}
+                        onClick={() => handleCategoryChange(category)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                          activeCategory === category 
+                            ? "bg-primary-green text-white shadow-md" 
+                            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                        }`}
+                      >
+                        {category}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="max-w-4xl mx-auto">
                   {/* For Donors Section */}
                   <div className="mb-8">
-                    <h3 className="text-xl font-bold mb-4 text-primary-green">For Donors & Supporters</h3>
-                    <div className="space-y-4">
-                      <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="donor-1">
-                          <AccordionTrigger>Are donations to the Medh Foundation tax-deductible?</AccordionTrigger>
-                          <AccordionContent>
-                            Yes, all donations to the Medh Foundation are tax-deductible under Section 80G of the Income Tax Act in India. You will receive an official receipt for your contribution, which can be used for tax deduction purposes.
+                    <h3 className={`text-xl font-bold mb-4 text-primary-green flex items-center ${activeCategory !== "All" && activeCategory !== "Donations" ? "hidden" : ""}`}>
+                      <span className="bg-primary-green/10 p-2 rounded-full mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-green">
+                          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                        </svg>
+                      </span>
+                      For Donors & Supporters
+                    </h3>
+                    <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "Donations" ? "hidden" : ""}`}>
+                      <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
+                        <AccordionItem value="donor-1" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                Are donations to the Medh Foundation tax-deductible?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                Yes, all donations to the Medh Foundation are tax-deductible under Section 80G of the Income Tax Act in India. You will receive an official receipt for your contribution, which can be used for tax deduction purposes.
+                              </div>
+                            </div>
                           </AccordionContent>
                         </AccordionItem>
                         
-                        <AccordionItem value="donor-2">
-                          <AccordionTrigger>How are my donations utilized?</AccordionTrigger>
-                          <AccordionContent>
-                            Approximately 85% of all donations go directly to our programs supporting children's education and single mothers' skill development. The remaining funds cover essential administrative and fundraising costs to ensure sustainable operation of our programs.
+                        <AccordionItem value="donor-2" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                How are my donations utilized?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                Approximately 85% of all donations go directly to our programs supporting children's education and single mothers' skill development. The remaining funds cover essential administrative and fundraising costs to ensure sustainable operation of our programs.
+                              </div>
+                            </div>
                           </AccordionContent>
                         </AccordionItem>
                         
-                        <AccordionItem value="donor-3">
-                          <AccordionTrigger>Can I specify how my donation is used?</AccordionTrigger>
-                          <AccordionContent>
-                            Yes, donors can specify which program or initiative they would like their donation to support. You can indicate your preference during the donation process or contact us directly to discuss specific allocation of your contribution.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="donor-4">
-                          <AccordionTrigger>What are the different ways I can donate?</AccordionTrigger>
-                          <AccordionContent>
-                            We accept donations through multiple channels including online payments, bank transfers, and cheques. We also offer options for monthly recurring donations and corporate giving programs.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="donor-5">
-                          <AccordionTrigger>Do you provide regular updates to donors?</AccordionTrigger>
-                          <AccordionContent>
-                            Yes, we send quarterly newsletters and annual impact reports to our donors. For major donors and corporate partners, we also provide customized reporting on the specific programs they support.
+                        {/* More donation FAQs would go here, hidden by default */}
+                        <AccordionItem value="donor-more" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                Can I specify how my donation is used?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                Yes, donors can specify which program or initiative they would like their donation to support. You can indicate your preference during the donation process or contact us directly to discuss specific allocation of your contribution.
+                              </div>
+                            </div>
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
@@ -354,127 +455,233 @@ const Contact = () => {
                   </div>
 
                   {/* For Support Seekers Section */}
-                  <div>
-                    <h3 className="text-xl font-bold mb-4 text-primary-green">For Financial Support Seekers</h3>
-                    <div className="space-y-4">
-                      <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                          <AccordionTrigger>What is the Medh Foundation?</AccordionTrigger>
-                          <AccordionContent>
-                            The Medh Foundation is a non-profit organization dedicated to empowering children and single mothers through education and skill development, with the aim of creating self-sufficient communities across India.
+                  <div className="mb-8">
+                    <h3 className={`text-xl font-bold mb-4 text-primary-green flex items-center ${activeCategory !== "All" && activeCategory !== "Financial Support" ? "hidden" : ""}`}>
+                      <span className="bg-primary-green/10 p-2 rounded-full mr-3">
+                        <CreditCard className="text-primary-green h-5 w-5" />
+                      </span>
+                      For Financial Support Seekers
+                    </h3>
+                    <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "Financial Support" ? "hidden" : ""}`}>
+                      <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
+                        <AccordionItem value="item-1" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                How can I apply for financial support?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                You can apply for financial support by clicking on the "Online Application for Financial Support" button available on our website. The application process involves filling out a form with details about the child, educational information, family situation, and the type of support needed.
+                              </div>
+                            </div>
                           </AccordionContent>
                         </AccordionItem>
                         
-                        <AccordionItem value="item-2">
-                          <AccordionTrigger>How can I apply for financial support?</AccordionTrigger>
-                          <AccordionContent>
-                            You can apply for financial support by clicking on the "Online Application for Financial Support" button available on our website. The application process involves filling out a form with details about the child, educational information, family situation, and the type of support needed.
+                        <AccordionItem value="item-2" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                What documents are required for the financial support application?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                Required documents include the child's identification (Aadhar Card, birth certificate), school ID, recent fee receipts, academic records, parent identification documents, proof of residence, and income verification. Single mothers should provide relevant documentation regarding their marital status.
+                              </div>
+                            </div>
                           </AccordionContent>
                         </AccordionItem>
                         
-                        <AccordionItem value="item-3">
-                          <AccordionTrigger>What types of financial support does the foundation offer?</AccordionTrigger>
-                          <AccordionContent>
-                            The foundation offers several types of financial support including tuition assistance, books and supplies funding, and transportation assistance. Each type of support is designed to address specific educational needs and remove barriers to education.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-4">
-                          <AccordionTrigger>Who is eligible for the foundation's programs?</AccordionTrigger>
-                          <AccordionContent>
-                            Our programs primarily focus on supporting children from underprivileged backgrounds and single mothers. Eligibility criteria may vary by program, but generally, we support those who demonstrate financial need and a commitment to education or skill development.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-5">
-                          <AccordionTrigger>How can I volunteer with the Medh Foundation?</AccordionTrigger>
-                          <AccordionContent>
-                            You can volunteer with us by visiting the "Get Involved" section of our website and filling out the volunteer application form. We welcome volunteers with various skills and interests, including teaching, mentoring, administrative support, event planning, and more.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-6">
-                          <AccordionTrigger>How are donations to the foundation used?</AccordionTrigger>
-                          <AccordionContent>
-                            Donations to the Medh Foundation are primarily used to fund our educational programs, skill development initiatives, and financial support for children and single mothers. A small percentage covers administrative costs to ensure the sustainable operation of our programs.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-7">
-                          <AccordionTrigger>Can I specify how my donation is used?</AccordionTrigger>
-                          <AccordionContent>
-                            Yes, donors can specify which program or initiative they would like their donation to support. You can indicate your preference during the donation process, or contact us directly to discuss specific allocation of your contribution.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-8">
-                          <AccordionTrigger>Are donations to the Medh Foundation tax-deductible?</AccordionTrigger>
-                          <AccordionContent>
-                            Yes, donations to the Medh Foundation are tax-deductible as allowed by law. We provide donation receipts that can be used for tax purposes. For specific tax-related questions, we recommend consulting with your tax advisor.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-9">
-                          <AccordionTrigger>How can my organization partner with the Medh Foundation?</AccordionTrigger>
-                          <AccordionContent>
-                            We welcome partnerships with organizations that share our mission and values. Potential partnerships can include corporate social responsibility initiatives, joint programs, sponsorships, or in-kind donations. Please contact us at care@medhfoundation.org to discuss partnership opportunities.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-10">
-                          <AccordionTrigger>What documents are required for the financial support application?</AccordionTrigger>
-                          <AccordionContent>
-                            Required documents include the child's identification (Aadhar Card, birth certificate), school ID, recent fee receipts, academic records, parent identification documents, proof of residence, and income verification. Single mothers should provide relevant documentation regarding their marital status.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-11">
-                          <AccordionTrigger>How long does the application process take?</AccordionTrigger>
-                          <AccordionContent>
-                            The application review process typically takes 4-6 weeks from submission. This includes verification of documents, assessment of need, and determination of the appropriate support. Applicants will be notified of the decision via email or phone.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-12">
-                          <AccordionTrigger>Does the foundation provide support for higher education?</AccordionTrigger>
-                          <AccordionContent>
-                            Yes, the Medh Foundation provides support for various levels of education, from primary school through undergraduate studies. The specific support available depends on the student's needs, academic performance, and our available resources.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-13">
-                          <AccordionTrigger>How often does the foundation disburse financial support?</AccordionTrigger>
-                          <AccordionContent>
-                            Financial support is typically disbursed at the beginning of each academic term or as needed for specific expenses. The disbursement schedule is tailored to align with educational institution requirements and the specific needs of recipients.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-14">
-                          <AccordionTrigger>Is financial support available for students outside of India?</AccordionTrigger>
-                          <AccordionContent>
-                            Currently, our financial support programs are focused on students within India. However, we are continuously evaluating opportunities to expand our reach. Please contact us for the most current information regarding eligibility regions.
-                          </AccordionContent>
-                        </AccordionItem>
-                        
-                        <AccordionItem value="item-15">
-                          <AccordionTrigger>How can I stay updated about the foundation's activities?</AccordionTrigger>
-                          <AccordionContent>
-                            You can stay updated by subscribing to our newsletter at the bottom of our website, following us on social media platforms, or regularly visiting our website's News section. We share updates about our programs, success stories, and upcoming events.
+                        <AccordionItem value="item-3" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                What types of financial support does the foundation offer?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                The foundation offers several types of financial support including tuition assistance, books and supplies funding, and transportation assistance. Each type of support is designed to address specific educational needs and remove barriers to education.
+                              </div>
+                            </div>
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
                     </div>
                   </div>
                   
-                  <div className="mt-10 text-center">
-                    <p className="text-gray-700 mb-4">
-                      Don't see your question here? Contact us for more information.
+                  {/* For Volunteers Section */}
+                  <div className="mb-8">
+                    <h3 className={`text-xl font-bold mb-4 text-primary-green flex items-center ${activeCategory !== "All" && activeCategory !== "Volunteering" ? "hidden" : ""}`}>
+                      <span className="bg-primary-green/10 p-2 rounded-full mr-3">
+                        <Users className="text-primary-green h-5 w-5" />
+                      </span>
+                      For Volunteers
+                    </h3>
+                    <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "Volunteering" ? "hidden" : ""}`}>
+                      <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
+                        <AccordionItem value="vol-1" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                How can I volunteer with the Medh Foundation?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                You can volunteer with us by visiting the "Get Involved" section of our website and filling out the volunteer application form. We welcome volunteers with various skills and interests, including teaching, mentoring, administrative support, event planning, and more.
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                        
+                        <AccordionItem value="vol-2" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                What skills are most needed for volunteering?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                We value volunteers with teaching, counseling, administrative, marketing, event planning, and fundraising skills. However, the most important qualities are commitment, empathy, and a passion for helping children and single mothers achieve self-sufficiency.
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                        
+                        <AccordionItem value="vol-3" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                Is there a minimum time commitment for volunteering?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                While we appreciate any time you can give, we recommend a minimum commitment of 4-6 hours per month for at least three months. This allows for meaningful engagement with our programs and the people we serve.
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    </div>
+                  </div>
+                  
+                  {/* For Programs Section */}
+                  <div className="mb-8">
+                    <h3 className={`text-xl font-bold mb-4 text-primary-green flex items-center ${activeCategory !== "All" && activeCategory !== "Programs" ? "hidden" : ""}`}>
+                      <span className="bg-primary-green/10 p-2 rounded-full mr-3">
+                        <FileText className="text-primary-green h-5 w-5" />
+                      </span>
+                      About Our Programs
+                    </h3>
+                    <div className={`space-y-4 ${activeCategory !== "All" && activeCategory !== "Programs" ? "hidden" : ""}`}>
+                      <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-md overflow-hidden">
+                        <AccordionItem value="prog-1" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                What educational programs does the foundation offer?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                Our foundation offers various educational programs including primary education support, secondary education scholarships, higher education grants, vocational training, and specialized tutoring services. We also provide educational materials, digital learning resources, and mentorship programs.
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                        
+                        <AccordionItem value="prog-2" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                What skill development programs are available for single mothers?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                Our skill development programs for single mothers include vocational training in areas such as tailoring, beauty services, cooking, handicrafts, computer literacy, and entrepreneurship. We also provide financial literacy education, business planning support, and micro-enterprise development assistance.
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                        
+                        <AccordionItem value="prog-3" className="border-b border-gray-100 px-1">
+                          <AccordionTrigger className="hover:no-underline py-4 px-4">
+                            <div className="flex items-start text-left">
+                              <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                              <h3 className="text-lg font-medium">
+                                How long are the typical program durations?
+                              </h3>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="px-4 pb-6">
+                            <div className="flex pt-2">
+                              <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                              <div className="text-gray-600">
+                                Program durations vary based on the type of support. Educational support typically follows academic cycles (1-3 years), while skill development programs for single mothers typically range from 3-12 months depending on the complexity of skills being taught and the learning pace of participants.
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    </div>
+                  </div>
+                  
+                  {/* Connect directly section */}
+                  <div className="mt-12 text-center bg-white p-8 rounded-xl shadow-md border border-gray-100 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.01]">
+                    <img 
+                      src="/public/lovable-uploads/adafedbe-531e-4b59-abd9-9dfe8fdb2c0b.png" 
+                      alt="Contact us" 
+                      className="w-24 h-24 mx-auto mb-4 rounded-full shadow-md object-cover"
+                    />
+                    <p className="text-gray-700 mb-6">
+                      Don't see your question here? Our team is ready to help!
                     </p>
                     <Link 
                       to="/contact"
-                      className="btn-primary"
+                      className="btn-primary inline-flex items-center group"
                     >
                       Ask a Question
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="ml-2 group-hover:translate-x-1 transition-transform">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
                     </Link>
                   </div>
                 </div>
@@ -551,3 +758,4 @@ function Heart(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+
