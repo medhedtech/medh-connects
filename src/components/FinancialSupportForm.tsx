@@ -26,9 +26,11 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 import { BookOpen, UserRound } from "lucide-react";
+import FormTermsAndCaptcha from "./FormTermsAndCaptcha";
 
-// Education support form schema
+// Education support form schema with parents details
 const educationFormSchema = z.object({
+  // Student details
   fullName: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
   phone: z.string().min(10, { message: "Phone number must be at least 10 digits" }),
@@ -36,6 +38,17 @@ const educationFormSchema = z.object({
   schoolName: z.string().min(2, { message: "School name must be at least 2 characters" }),
   grade: z.string().min(1, { message: "Please select a grade" }),
   supportNeeded: z.string().min(10, { message: "Please describe the support needed" }),
+  
+  // Parent details
+  parentName: z.string().min(2, { message: "Parent's name must be at least 2 characters" }),
+  parentEmail: z.string().email({ message: "Please enter a valid email address" }),
+  parentPhone: z.string().min(10, { message: "Phone number must be at least 10 digits" }),
+  relationship: z.string().min(1, { message: "Please specify the relationship" }),
+  
+  // Terms acceptance
+  termsAccepted: z.boolean().refine(val => val === true, {
+    message: "You must accept the terms and conditions"
+  }),
 });
 
 // Upskilling form schema
@@ -48,6 +61,11 @@ const upskillingFormSchema = z.object({
   desiredSkills: z.string().min(5, { message: "Please describe your desired skills" }),
   employmentStatus: z.enum(["unemployed", "part-time", "full-time"]),
   childrenDetails: z.string().min(5, { message: "Please provide details about your children" }),
+  
+  // Terms acceptance
+  termsAccepted: z.boolean().refine(val => val === true, {
+    message: "You must accept the terms and conditions"
+  }),
 });
 
 type EducationFormValues = z.infer<typeof educationFormSchema>;
@@ -67,6 +85,11 @@ export function FinancialSupportForm() {
       schoolName: "",
       grade: "",
       supportNeeded: "",
+      parentName: "",
+      parentEmail: "",
+      parentPhone: "",
+      relationship: "",
+      termsAccepted: false,
     },
   });
 
@@ -82,6 +105,7 @@ export function FinancialSupportForm() {
       desiredSkills: "",
       employmentStatus: "unemployed",
       childrenDetails: "",
+      termsAccepted: false,
     },
   });
 
@@ -132,88 +156,150 @@ export function FinancialSupportForm() {
         {formType === "education" ? (
           <Form {...educationForm}>
             <form onSubmit={educationForm.handleSubmit(onEducationSubmit)} className="space-y-4">
-              <FormField
-                control={educationForm.control}
-                name="fullName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Full Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Enter your full name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-4 border border-gray-200 p-4 rounded-lg mb-4">
+                <h3 className="text-md font-semibold">Student Details</h3>
                 <FormField
                   control={educationForm.control}
-                  name="email"
+                  name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Student Full Name</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="Enter your email" {...field} />
+                        <Input placeholder="Enter student's full name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={educationForm.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="Enter email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={educationForm.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone Number</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Enter phone number" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <FormField
                   control={educationForm.control}
-                  name="phone"
+                  name="address"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone Number</FormLabel>
+                      <FormLabel>Address</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter your phone number" {...field} />
+                        <Textarea placeholder="Enter address" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={educationForm.control}
+                    name="schoolName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>School Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Enter school name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={educationForm.control}
+                    name="grade"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Grade/Class</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Enter grade or class" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-4 border border-gray-200 p-4 rounded-lg mb-4">
+                <h3 className="text-md font-semibold">Parent/Guardian Details</h3>
+                <FormField
+                  control={educationForm.control}
+                  name="parentName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Parent/Guardian Full Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter parent's full name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={educationForm.control}
+                    name="parentEmail"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Parent Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="Enter parent's email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={educationForm.control}
+                    name="parentPhone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Parent Phone Number</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Enter parent's phone number" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <FormField
+                  control={educationForm.control}
+                  name="relationship"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Relationship to Student</FormLabel>
+                      <FormControl>
+                        <Input placeholder="E.g. Mother, Father, Guardian" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-              <FormField
-                control={educationForm.control}
-                name="address"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Address</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="Enter your address" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField
-                  control={educationForm.control}
-                  name="schoolName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>School Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Enter school name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={educationForm.control}
-                  name="grade"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Grade/Class</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Enter grade or class" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+
               <FormField
                 control={educationForm.control}
                 name="supportNeeded"
@@ -231,6 +317,10 @@ export function FinancialSupportForm() {
                   </FormItem>
                 )}
               />
+              
+              {/* Terms and CAPTCHA */}
+              <FormTermsAndCaptcha control={educationForm.control} />
+              
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={closeForm}>
                   Cancel
@@ -381,6 +471,10 @@ export function FinancialSupportForm() {
                   </FormItem>
                 )}
               />
+              
+              {/* Terms and CAPTCHA */}
+              <FormTermsAndCaptcha control={upskillingForm.control} />
+              
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={closeForm}>
                   Cancel
