@@ -82,11 +82,11 @@ const FormTermsAndCaptcha = ({ control }: FormTermsAndCaptchaProps) => {
             <div className="space-y-1 leading-none">
               <Label className="font-normal text-sm">
                 I agree to the{" "}
-                <Link to="/terms-of-service" className="text-primary-green hover:underline">
+                <Link to="/terms-of-service" target="_blank" rel="noopener noreferrer" className="text-primary-green hover:underline">
                   Terms of Service
                 </Link>{" "}
                 and{" "}
-                <Link to="/privacy-policy" className="text-primary-green hover:underline">
+                <Link to="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-green hover:underline">
                   Privacy Policy
                 </Link>
               </Label>
