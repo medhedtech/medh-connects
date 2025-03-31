@@ -23,8 +23,9 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 flex justify-center">
-          <ApplicationButton size="lg" />
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 flex flex-col sm:flex-row justify-center gap-4">
+          <ApplicationButton size="lg" type="education" />
+          <ApplicationButton size="lg" type="upskilling" />
         </div>
         <Mission />
         <AimsObjectives />
