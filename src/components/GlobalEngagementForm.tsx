@@ -46,8 +46,8 @@ const formSchema = z.object({
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
   }),
-  termsAccepted: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms and conditions" }),
+  termsAccepted: z.boolean().refine(val => val === true, {
+    message: "You must accept the terms and conditions"
   }),
 });
 
