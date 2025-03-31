@@ -9,7 +9,7 @@ import Navbar from "@/components/Navbar";
 import News from "@/components/News";
 import Programs from "@/components/Programs";
 import Footer from "@/components/Footer";
-import ApplicationButton from "@/components/ApplicationButton";
+import ApplicationSection from "@/components/ApplicationSection";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -23,10 +23,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 flex flex-col sm:flex-row justify-center gap-4">
-          <ApplicationButton size="lg" type="education" />
-          <ApplicationButton size="lg" type="upskilling" />
-        </div>
+        <ApplicationSection />
         <Mission />
         <AimsObjectives />
         <Approach />
