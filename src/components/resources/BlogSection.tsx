@@ -16,6 +16,9 @@ interface BlogSectionProps {
 }
 
 const BlogSection = ({ blogPosts }: BlogSectionProps) => {
+  // Display only the first 3 blog posts
+  const displayedPosts = blogPosts.slice(0, 3);
+  
   return (
     <section id="news" className="py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
@@ -25,7 +28,7 @@ const BlogSection = ({ blogPosts }: BlogSectionProps) => {
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
+          {displayedPosts.map((post) => (
             <div key={post.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
               <div className="h-48 overflow-hidden">
                 <img 
@@ -59,7 +62,7 @@ const BlogSection = ({ blogPosts }: BlogSectionProps) => {
         
         <div className="mt-10 text-center">
           <Link 
-            to="/resources/blog"
+            to="/blog"
             className="btn-outline"
           >
             View All Articles

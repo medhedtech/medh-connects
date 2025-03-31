@@ -79,7 +79,7 @@ const EventsSection = ({ events }: EventsSectionProps) => {
         
         <div className="mt-10 text-center">
           <Link 
-            to="/resources/events"
+            to="/events"
             className="btn-outline"
           >
             View All Events

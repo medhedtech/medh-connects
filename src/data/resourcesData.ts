@@ -75,31 +75,37 @@ export const faqs = [
   {
     id: 1,
     question: "How can I donate to the Medh Foundation?",
-    answer: "You can donate through our website using our secure payment portal, or by sending a check to our office address. We accept one-time donations as well as monthly recurring contributions."
+    answer: "You can donate through our website using our secure payment portal, or by sending a check to our office address. We accept one-time donations as well as monthly recurring contributions.",
+    category: "Donations"
   },
   {
     id: 2,
     question: "Are my donations tax-deductible?",
-    answer: "Yes, all donations to the Medh Foundation are tax-deductible under Section 80G of the Income Tax Act in India. You will receive an official receipt for your contribution."
+    answer: "Yes, all donations to the Medh Foundation are tax-deductible under Section 80G of the Income Tax Act in India. You will receive an official receipt for your contribution.",
+    category: "Donations"
   },
   {
     id: 3,
     question: "How can I volunteer with the Medh Foundation?",
-    answer: "Visit our 'Get Involved' page and fill out the volunteer application form. We offer various volunteering opportunities based on your skills, interests, and availability."
+    answer: "Visit our 'Get Involved' page and fill out the volunteer application form. We offer various volunteering opportunities based on your skills, interests, and availability.",
+    category: "Volunteering"
   },
   {
     id: 4,
     question: "What geographical areas does the Medh Foundation serve?",
-    answer: "We currently operate in Delhi, Mumbai, Bangalore, and several rural areas in Maharashtra and Karnataka. We're continuously expanding our reach to serve more communities across India."
+    answer: "We currently operate in Delhi, Mumbai, Bangalore, and several rural areas in Maharashtra and Karnataka. We're continuously expanding our reach to serve more communities across India.",
+    category: "General"
   },
   {
     id: 5,
     question: "How are funds allocated within the organization?",
-    answer: "Approximately 85% of all donations go directly to our programs supporting children's education and single mothers' skill development. The remaining funds cover essential administrative and fundraising costs."
+    answer: "Approximately 85% of all donations go directly to our programs supporting children's education and single mothers' skill development. The remaining funds cover essential administrative and fundraising costs.",
+    category: "Donations"
   },
   {
     id: 6,
     question: "Can my company partner with the Medh Foundation?",
-    answer: "Absolutely! We welcome corporate partnerships. Please contact our partnership team at partnerships@medhfoundation.org to discuss collaboration opportunities."
+    answer: "Absolutely! We welcome corporate partnerships. Please contact our partnership team at partnerships@medhfoundation.org to discuss collaboration opportunities.",
+    category: "Partnerships"
   },
 ];

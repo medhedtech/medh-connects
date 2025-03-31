@@ -9,6 +9,8 @@ import About from "./pages/About";
 import ProgramDetails from "./pages/ProgramDetails";
 import GetInvolved from "./pages/GetInvolved";
 import Resources from "./pages/Resources";
+import BlogPage from "./pages/BlogPage";
+import EventsPage from "./pages/EventsPage";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/programs" element={<ProgramDetails />} />
           <Route path="/get-involved" element={<GetInvolved />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/events" element={<EventsPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
