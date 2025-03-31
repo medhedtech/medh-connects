@@ -209,7 +209,7 @@ const GetInvolved = () => {
                   <div className="grid grid-cols-1 gap-4 p-6">
                     <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-all">
                       <div className="grid md:grid-cols-3">
-                        <div className="md:col-span-1">
+                        <div className="md:col-span-1 h-40">
                           <img 
                             src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
                             alt="Child with educational materials" 
@@ -234,7 +234,7 @@ const GetInvolved = () => {
                     
                     <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-all">
                       <div className="grid md:grid-cols-3">
-                        <div className="md:col-span-1">
+                        <div className="md:col-span-1 h-40">
                           <img 
                             src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
                             alt="Vocational training session" 
@@ -259,7 +259,7 @@ const GetInvolved = () => {
                     
                     <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-all">
                       <div className="grid md:grid-cols-3">
-                        <div className="md:col-span-1">
+                        <div className="md:col-span-1 h-40">
                           <img 
                             src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
                             alt="Community workshop" 
@@ -284,7 +284,7 @@ const GetInvolved = () => {
                     
                     <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-all">
                       <div className="grid md:grid-cols-3">
-                        <div className="md:col-span-1">
+                        <div className="md:col-span-1 h-40">
                           <img 
                             src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
                             alt="Micro-enterprise group" 
@@ -309,10 +309,13 @@ const GetInvolved = () => {
                   </div>
                   
                   <div className="px-6 pb-6">
-                    <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
-                      <p className="text-sm text-gray-600">
-                        All donations are tax-deductible under Section 80G of the Income Tax Act. You will receive an official receipt for your contribution.
-                      </p>
+                    <div className="p-5 bg-primary-green/10 rounded-lg border border-primary-green/30 shadow-sm">
+                      <div className="flex items-start">
+                        <Heart className="w-5 h-5 text-primary-green mr-2 mt-0.5 flex-shrink-0" />
+                        <p className="text-gray-800 font-medium">
+                          All donations are tax-deductible under Section 80G of the Income Tax Act. You will receive an official receipt for your contribution.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
