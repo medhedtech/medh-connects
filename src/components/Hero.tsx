@@ -26,7 +26,7 @@ const Hero = () => {
             <p className="text-lg md:text-xl text-white mb-8 font-serif drop-shadow-md bg-black/30 backdrop-blur-sm p-4 rounded-lg text-left">Creating positive change through education and skill development for children and single mothers in India.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <DonateButton size="lg" />
-              <a href="/get-involved" className="inline-flex items-center gap-2 text-white bg-white/30 backdrop-blur-sm hover:bg-white/40 font-medium text-lg py-3 px-8 rounded-full transition-all hover:shadow-lg border border-white/40 hover:translate-y-[-2px]">
+              <a href="/get-involved#volunteer" className="inline-flex items-center gap-2 text-white bg-white/30 backdrop-blur-sm hover:bg-white/40 font-medium text-lg py-3 px-8 rounded-full transition-all hover:shadow-lg border border-white/40 hover:translate-y-[-2px]">
                 <span>Volunteer</span>
               </a>
             </div>
