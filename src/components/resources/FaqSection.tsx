@@ -1,8 +1,10 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown, Search, HelpCircle, Filter, BookOpen } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useToast } from "@/hooks/use-toast";
 
 interface Faq {
   id: number;
@@ -18,9 +20,11 @@ interface FaqSectionProps {
 const FaqSection = ({ faqs }: FaqSectionProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [openItem, setOpenItem] = useState<number | null>(null);
+  const { toast } = useToast();
 
   const categories = Array.from(new Set(faqs.map((faq) => faq.category || "General")));
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [isSearching, setIsSearching] = useState(false);
 
   // Get FAQs for display
   const getFilteredFaqs = () => {
@@ -51,39 +55,74 @@ const FaqSection = ({ faqs }: FaqSectionProps) => {
     return Object.values(faqsByCategory).flat();
   };
 
+  useEffect(() => {
+    // Animation for search transitions
+    setIsSearching(!!searchQuery);
+  }, [searchQuery]);
+
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    toast({
+      title: `Viewing ${category} FAQs`,
+      description: category === "All" ? "Showing most relevant FAQs from each category" : `Showing all ${category} questions`,
+    });
+  };
+
   const filteredFaqs = getFilteredFaqs();
 
   return (
-    <section id="faq" className="py-16 px-4 md:px-8">
+    <section id="faq" className="py-16 px-4 md:px-8 bg-gradient-to-b from-white to-accent-green/5">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Got Questions?</span>
+          <div className="flex items-center justify-center mb-4">
+            <HelpCircle className="text-accent-green h-10 w-10 mr-3" />
+            <span className="bg-accent-green/10 text-accent-green px-4 py-1 rounded-full text-sm font-medium">Got Questions?</span>
+          </div>
           <h2 className="mt-4 text-3xl font-bold">Frequently Asked Questions</h2>
           <p className="mt-4 text-gray-700 max-w-3xl mx-auto">
             Find answers to common questions about our programs, donation process, and volunteering opportunities.
           </p>
         </div>
         
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
+          {/* Visual banner/image */}
+          <div className="relative rounded-xl overflow-hidden mb-10 shadow-xl">
+            <img 
+              src="/public/lovable-uploads/1994e886-9ac1-4d3b-b674-24257faab00f.png" 
+              alt="People discussing questions and answers" 
+              className="w-full h-64 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8">
+              <p className="text-white text-lg font-medium drop-shadow-md max-w-md text-center px-4">
+                Our team is dedicated to answering your questions and helping you navigate our resources
+              </p>
+            </div>
+          </div>
+          
           {/* Search and filter */}
-          <div className="mb-8 space-y-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <div className="mb-10 space-y-6">
+            <div className="relative transition-all duration-300 transform hover:scale-[1.01]">
+              <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${isSearching ? 'text-primary-green' : 'text-gray-400'} h-5 w-5 transition-colors`} />
               <input
                 type="text"
                 placeholder="Search FAQs..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green"
+                className="w-full pl-10 pr-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green shadow-md focus:shadow-lg transition-all duration-300"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3 justify-center">
+              <div className="flex items-center mr-2">
+                <Filter className="h-4 w-4 text-gray-500 mr-1" />
+                <span className="text-sm text-gray-500">Filter:</span>
+              </div>
+              
               <button
-                onClick={() => setActiveCategory("All")}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                onClick={() => handleCategoryChange("All")}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   activeCategory === "All" 
-                    ? "bg-primary-green text-white" 
+                    ? "bg-primary-green text-white shadow-md" 
                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
               >
@@ -93,10 +132,10 @@ const FaqSection = ({ faqs }: FaqSectionProps) => {
               {categories.map((category) => (
                 <button
                   key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                  onClick={() => handleCategoryChange(category)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     activeCategory === category
-                      ? "bg-primary-green text-white"
+                      ? "bg-primary-green text-white shadow-md"
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
@@ -109,48 +148,69 @@ const FaqSection = ({ faqs }: FaqSectionProps) => {
           {/* FAQ items */}
           <div className="space-y-4">
             {filteredFaqs.length > 0 ? (
-              filteredFaqs.map((faq) => (
-                <Collapsible
-                  key={faq.id}
-                  open={openItem === faq.id}
-                  onOpenChange={() => setOpenItem(openItem === faq.id ? null : faq.id)}
-                  className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all"
-                >
-                  <div className="p-6">
-                    <CollapsibleTrigger className="flex items-start justify-between w-full text-left">
-                      <h3 className="text-lg font-bold flex items-start">
-                        <span className="text-primary-green mr-3">Q:</span>
-                        <span>{faq.question}</span>
-                      </h3>
-                      <ChevronDown 
-                        className={`h-5 w-5 text-gray-500 transition-transform ${openItem === faq.id ? "transform rotate-180" : ""}`} 
-                      />
-                    </CollapsibleTrigger>
+              <Accordion type="single" collapsible className="space-y-5">
+                {filteredFaqs.map((faq) => (
+                  <AccordionItem
+                    key={faq.id}
+                    value={faq.id.toString()} 
+                    className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden transition-all hover:shadow-lg data-[state=open]:shadow-lg"
+                  >
+                    <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                      <div className="flex items-start text-left">
+                        <span className="text-primary-green font-bold mr-3 text-xl">Q:</span>
+                        <h3 className="text-lg font-medium">
+                          {faq.question}
+                        </h3>
+                      </div>
+                    </AccordionTrigger>
                     
-                    <CollapsibleContent className="pt-4">
-                      <p className="text-gray-600 pl-6">
-                        {faq.answer}
-                      </p>
-                    </CollapsibleContent>
-                  </div>
-                </Collapsible>
-              ))
+                    <AccordionContent className="px-6 pb-6">
+                      <div className="flex pt-2">
+                        <span className="text-secondary-orange font-bold mr-3 text-xl">A:</span>
+                        <div className="text-gray-600">
+                          {faq.answer}
+                          
+                          {/* Show category tag */}
+                          <div className="mt-4 pt-3 border-t border-gray-100">
+                            <span className="inline-block px-3 py-1 bg-accent-green/10 text-accent-green text-xs rounded-full">
+                              {faq.category || "General"}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             ) : (
-              <div className="text-center py-8">
-                <p className="text-gray-500">No FAQs match your search criteria</p>
+              <div className="text-center py-12 bg-white rounded-xl shadow-inner">
+                <BookOpen className="mx-auto h-12 w-12 text-gray-300 mb-4" />
+                <p className="text-gray-500 mb-2">No FAQs match your search criteria</p>
+                <button 
+                  onClick={() => setSearchQuery("")}
+                  className="text-primary-green hover:underline"
+                >
+                  Clear search
+                </button>
               </div>
             )}
           </div>
           
-          <div className="mt-10 text-center">
+          <div className="mt-12 text-center bg-white p-8 rounded-xl shadow-md border border-gray-100">
+            <img 
+              src="/public/lovable-uploads/adafedbe-531e-4b59-abd9-9dfe8fdb2c0b.png" 
+              alt="Contact us" 
+              className="w-24 h-24 mx-auto mb-4 rounded-full shadow-md object-cover"
+            />
             <p className="text-gray-700 mb-4">
-              Don't see your question here? Contact us for more information.
+              Don't see your question here? Our team is ready to help!
             </p>
             <Link 
               to="/contact"
-              className="btn-primary"
+              className="btn-primary inline-flex items-center"
             >
               Ask a Question
+              <ChevronDown className="ml-1 h-4 w-4 rotate-[-90deg]" />
             </Link>
           </div>
         </div>
