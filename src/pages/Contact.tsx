@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone, Users, Calendar, FileText, CreditCard } from "lucide-react";
@@ -6,30 +7,48 @@ import { toast } from "@/hooks/use-toast";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import ApplicationButton from "@/components/ApplicationButton";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import FormTermsAndCaptcha from "@/components/FormTermsAndCaptcha";
+
+// Contact form schema with terms acceptance
+const contactFormSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  phone: z.string().optional(),
+  subject: z.string().min(1, {
+    message: "Please select a subject.",
+  }),
+  message: z.string().min(10, {
+    message: "Message must be at least 10 characters.",
+  }),
+  termsAccepted: z.literal(true, {
+    errorMap: () => ({ message: "You must accept the terms and privacy policy" }),
+  }),
+});
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: ""
-  });
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    // Scroll to top when component mounts
-    window.scrollTo(0, 0);
-  }, []);
+  const form = useForm<z.infer<typeof contactFormSchema>>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    },
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  function onSubmit(values: z.infer<typeof contactFormSchema>) {
+    console.log(values);
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -39,15 +58,14 @@ const Contact = () => {
         description: "We've received your message and will get back to you soon.",
       });
       setIsSubmitting(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: ""
-      });
+      form.reset();
     }, 1500);
-  };
+  }
+
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -166,85 +184,116 @@ const Contact = () => {
               <div className="lg:col-span-2">
                 <div className="bg-white rounded-xl shadow-md p-8">
                   <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="name" className="block text-gray-700 mb-2">Full Name</label>
-                        <input 
-                          type="text" 
-                          id="name"
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
                           name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                          required
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Full Name</FormLabel>
+                              <FormControl>
+                                <input 
+                                  type="text"
+                                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-gray-700 mb-2">Email Address</label>
-                        <input 
-                          type="email" 
-                          id="email"
+                        <FormField
+                          control={form.control}
                           name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                          required
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email Address</FormLabel>
+                              <FormControl>
+                                <input 
+                                  type="email"
+                                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
                       </div>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="phone" className="block text-gray-700 mb-2">Phone Number</label>
-                        <input 
-                          type="tel" 
-                          id="phone"
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
                           name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Phone Number</FormLabel>
+                              <FormControl>
+                                <input 
+                                  type="tel"
+                                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="subject"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Subject</FormLabel>
+                              <FormControl>
+                                <select 
+                                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                  {...field}
+                                >
+                                  <option value="">Select a subject</option>
+                                  <option value="General Inquiry">General Inquiry</option>
+                                  <option value="Donation Question">Donation Question</option>
+                                  <option value="Volunteer Information">Volunteer Information</option>
+                                  <option value="Program Information">Program Information</option>
+                                  <option value="Corporate Partnership">Corporate Partnership</option>
+                                  <option value="Other">Other</option>
+                                </select>
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
                       </div>
-                      <div>
-                        <label htmlFor="subject" className="block text-gray-700 mb-2">Subject</label>
-                        <select 
-                          id="subject"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleChange}
-                          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                          required
-                        >
-                          <option value="">Select a subject</option>
-                          <option value="General Inquiry">General Inquiry</option>
-                          <option value="Donation Question">Donation Question</option>
-                          <option value="Volunteer Information">Volunteer Information</option>
-                          <option value="Program Information">Program Information</option>
-                          <option value="Corporate Partnership">Corporate Partnership</option>
-                          <option value="Other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="message" className="block text-gray-700 mb-2">Your Message</label>
-                      <textarea 
-                        id="message"
+                      <FormField
+                        control={form.control}
                         name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={6}
-                        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
-                        required
-                      ></textarea>
-                    </div>
-                    <button 
-                      type="submit" 
-                      className="bg-primary-green text-white font-medium py-3 px-6 rounded-md hover:bg-primary-green/90 transition-colors disabled:opacity-70"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                    </button>
-                  </form>
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Your Message</FormLabel>
+                            <FormControl>
+                              <textarea 
+                                rows={6}
+                                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                                {...field}
+                              ></textarea>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <FormTermsAndCaptcha control={form.control} />
+                      
+                      <button 
+                        type="submit" 
+                        className="bg-primary-green text-white font-medium py-3 px-6 rounded-md hover:bg-primary-green/90 transition-colors disabled:opacity-70"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </button>
+                    </form>
+                  </Form>
                 </div>
               </div>
             </div>
