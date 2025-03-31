@@ -1,5 +1,7 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import DonationModal from "@/components/DonationModal";
 import { Heart, Clock, Users, Building, Calendar, Globe, ChevronRight, DollarSign, Handshake, Trophy, CheckCircle, BarChart3 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -35,6 +37,9 @@ const volunteerFormSchema = z.object({
 
 const GetInvolved = () => {
   const [showCSRForm, setShowCSRForm] = useState(false);
+  const [showDonationModal, setShowDonationModal] = useState(false);
+  const [selectedAmount, setSelectedAmount] = useState("1000");
+  const [donationType, setDonationType] = useState("one-time");
   const { toast } = useToast();
   
   const volunteerForm = useForm<z.infer<typeof volunteerFormSchema>>({
@@ -58,6 +63,22 @@ const GetInvolved = () => {
     });
     volunteerForm.reset();
   }
+  
+  const handleDonationTypeSelect = (type: string) => {
+    setDonationType(type);
+  };
+  
+  const handleAmountSelect = (amount: string) => {
+    setSelectedAmount(amount);
+  };
+  
+  const handleCustomAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedAmount(event.target.value);
+  };
+  
+  const handleProceedToDonate = () => {
+    setShowDonationModal(true);
+  };
 
   useEffect(() => {
     // Scroll to top when component mounts
@@ -103,15 +124,36 @@ const GetInvolved = () => {
                   <h3 className="text-xl font-bold mb-4">Donation Options</h3>
                   <div className="space-y-4">
                     <div className="flex items-center p-4 border border-gray-200 rounded-lg hover:border-primary-green transition-colors">
-                      <input type="radio" name="donation-type" id="one-time" className="mr-3" />
+                      <input 
+                        type="radio" 
+                        name="donation-type" 
+                        id="one-time" 
+                        className="mr-3"
+                        checked={donationType === "one-time"}
+                        onChange={() => handleDonationTypeSelect("one-time")}
+                      />
                       <label htmlFor="one-time" className="flex-grow font-medium">One-time Donation</label>
                     </div>
                     <div className="flex items-center p-4 border border-gray-200 rounded-lg hover:border-primary-green transition-colors">
-                      <input type="radio" name="donation-type" id="monthly" className="mr-3" />
+                      <input 
+                        type="radio" 
+                        name="donation-type" 
+                        id="monthly" 
+                        className="mr-3"
+                        checked={donationType === "monthly"}
+                        onChange={() => handleDonationTypeSelect("monthly")}
+                      />
                       <label htmlFor="monthly" className="flex-grow font-medium">Monthly Giving</label>
                     </div>
                     <div className="flex items-center p-4 border border-gray-200 rounded-lg hover:border-primary-green transition-colors">
-                      <input type="radio" name="donation-type" id="program" className="mr-3" />
+                      <input 
+                        type="radio" 
+                        name="donation-type" 
+                        id="program" 
+                        className="mr-3"
+                        checked={donationType === "program"}
+                        onChange={() => handleDonationTypeSelect("program")}
+                      />
                       <label htmlFor="program" className="flex-grow font-medium">Program-specific Support</label>
                     </div>
                   </div>
@@ -119,20 +161,40 @@ const GetInvolved = () => {
                   <div className="mt-6">
                     <h4 className="font-medium mb-3">Select Amount:</h4>
                     <div className="grid grid-cols-3 gap-3">
-                      <button className="bg-gray-100 hover:bg-primary-green hover:text-white transition-colors py-2 rounded-md font-medium">₹1,000</button>
-                      <button className="bg-gray-100 hover:bg-primary-green hover:text-white transition-colors py-2 rounded-md font-medium">₹5,000</button>
-                      <button className="bg-gray-100 hover:bg-primary-green hover:text-white transition-colors py-2 rounded-md font-medium">₹10,000</button>
+                      <button 
+                        className={`${selectedAmount === "1000" ? "bg-primary-green text-white" : "bg-gray-100"} hover:bg-primary-green hover:text-white transition-colors py-2 rounded-md font-medium`}
+                        onClick={() => handleAmountSelect("1000")}
+                      >
+                        ₹1,000
+                      </button>
+                      <button 
+                        className={`${selectedAmount === "5000" ? "bg-primary-green text-white" : "bg-gray-100"} hover:bg-primary-green hover:text-white transition-colors py-2 rounded-md font-medium`}
+                        onClick={() => handleAmountSelect("5000")}
+                      >
+                        ₹5,000
+                      </button>
+                      <button 
+                        className={`${selectedAmount === "10000" ? "bg-primary-green text-white" : "bg-gray-100"} hover:bg-primary-green hover:text-white transition-colors py-2 rounded-md font-medium`}
+                        onClick={() => handleAmountSelect("10000")}
+                      >
+                        ₹10,000
+                      </button>
                     </div>
                     <div className="mt-3">
                       <input 
                         type="text" 
                         placeholder="Custom Amount" 
                         className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-primary-green"
+                        value={!["1000", "5000", "10000"].includes(selectedAmount) ? selectedAmount : ""}
+                        onChange={handleCustomAmount}
                       />
                     </div>
                   </div>
                   
-                  <button className="mt-6 w-full bg-primary-green text-white font-medium py-3 rounded-md hover:bg-primary-green/90 transition-colors">
+                  <button 
+                    className="mt-6 w-full bg-primary-green text-white font-medium py-3 rounded-md hover:bg-primary-green/90 transition-colors"
+                    onClick={handleProceedToDonate}
+                  >
                     Proceed to Donate
                   </button>
                 </div>
@@ -690,6 +752,12 @@ const GetInvolved = () => {
       </main>
       <Footer />
       {showCSRForm && <CSRConsultationForm onClose={() => setShowCSRForm(false)} />}
+      <DonationModal 
+        isOpen={showDonationModal} 
+        onClose={() => setShowDonationModal(false)} 
+        selectedAmount={selectedAmount} 
+        donationType={donationType}
+      />
     </div>
   );
 };
