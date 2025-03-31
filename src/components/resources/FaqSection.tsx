@@ -22,13 +22,36 @@ const FaqSection = ({ faqs }: FaqSectionProps) => {
   const categories = Array.from(new Set(faqs.map((faq) => faq.category || "General")));
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const filteredFaqs = faqs.filter((faq) => {
-    const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = activeCategory === "All" || faq.category === activeCategory || 
-                           (!faq.category && activeCategory === "General");
-    return matchesSearch && matchesCategory;
-  });
+  // Get FAQs for display
+  const getFilteredFaqs = () => {
+    // First apply the search filter
+    const searchFiltered = faqs.filter((faq) => {
+      return faq.question.toLowerCase().includes(searchQuery.toLowerCase()) || 
+             faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+    
+    // If not on "All" category, just filter by the active category
+    if (activeCategory !== "All") {
+      return searchFiltered.filter(faq => 
+        faq.category === activeCategory || (!faq.category && activeCategory === "General")
+      );
+    }
+    
+    // For "All" category, show 2-3 most relevant FAQs from each category
+    const faqsByCategory: Record<string, Faq[]> = {};
+    
+    // Group FAQs by category
+    categories.forEach(category => {
+      faqsByCategory[category] = searchFiltered.filter(faq => 
+        faq.category === category || (!faq.category && category === "General")
+      ).slice(0, 3); // Take top 3 from each category
+    });
+    
+    // Flatten the grouped FAQs into a single array
+    return Object.values(faqsByCategory).flat();
+  };
+
+  const filteredFaqs = getFilteredFaqs();
 
   return (
     <section id="faq" className="py-16 px-4 md:px-8">
