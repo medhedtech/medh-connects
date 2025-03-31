@@ -34,7 +34,7 @@ export const blogPosts = [
     date: "January 25, 2025",
     author: "Rajesh Kumar",
     excerpt: "Addressing challenges and opportunities in making digital education accessible to all segments of society.",
-    image: "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     category: "Education"
   },
 ];
