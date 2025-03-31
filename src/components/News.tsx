@@ -1,4 +1,5 @@
-import { Calendar } from "lucide-react";
+
+import { Calendar, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const News = () => {
@@ -85,7 +86,7 @@ const News = () => {
                 <p className="text-gray-600 mt-3 text-sm">{event.description}</p>
                 <div className="mt-4">
                   <Link
-                    to="/resources#events"
+                    to={`/events/${event.id}`}
                     className="text-primary-green hover:text-primary-green/80 text-sm font-medium transition-colors"
                   >
                     Learn more
@@ -96,7 +97,7 @@ const News = () => {
             
             <div className="text-center mt-6">
               <Link 
-                to="/resources#events"
+                to="/events"
                 className="inline-flex items-center font-medium text-primary-green hover:text-primary-green/80 transition-colors"
               >
                 View all events
@@ -123,7 +124,7 @@ const News = () => {
                     <h4 className="font-bold text-lg mb-2">{news.title}</h4>
                     <p className="text-gray-600 mb-4">{news.excerpt}</p>
                     <Link
-                      to="/resources#news"
+                      to="/blog"
                       className="text-primary-green hover:text-primary-green/80 text-sm font-medium transition-colors"
                     >
                       Read full story
@@ -135,7 +136,7 @@ const News = () => {
             
             <div className="text-center mt-6">
               <Link 
-                to="/resources#news"
+                to="/blog"
                 className="btn-outline"
               >
                 View All News

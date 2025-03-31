@@ -1,6 +1,5 @@
 
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ResourcesHeader from "@/components/resources/ResourcesHeader";
@@ -104,7 +103,7 @@ const BlogPage = () => {
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-gray-500">By {post.author}</span>
                         <Link 
-                          to={`/resources/blog/${post.id}`}
+                          to={`/blog/${post.id}`}
                           className="text-primary-green hover:text-primary-green/80 font-medium text-sm transition-colors"
                         >
                           Read More

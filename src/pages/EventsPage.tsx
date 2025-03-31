@@ -1,12 +1,11 @@
 
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ResourcesHeader from "@/components/resources/ResourcesHeader";
 import { events } from "@/data/resourcesData";
 import { Link } from "react-router-dom";
-import { Calendar, Search } from "lucide-react";
+import { Calendar, Search, MapPin } from "lucide-react";
 
 const EventsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -134,17 +133,14 @@ const EventsPage = () => {
                           <span>{event.date} • {event.time}</span>
                         </div>
                         <div className="flex items-center text-sm text-gray-600">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 mr-2 text-secondary-orange">
-                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                          </svg>
+                          <MapPin className="w-4 h-4 mr-2 text-secondary-orange" />
                           <span>{event.location}</span>
                         </div>
                       </div>
                       <p className="text-gray-600 mb-4">{event.description}</p>
                       <div className="flex justify-between">
                         <Link 
-                          to={`/resources/events/${event.id}`}
+                          to={`/events/${event.id}`}
                           className="text-primary-green hover:text-primary-green/80 font-medium text-sm transition-colors"
                         >
                           Event Details
